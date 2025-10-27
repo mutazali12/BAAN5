@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>بان BAAN — حلول التجارة الإلكترونية المتقدمة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* تحسينات لتقليل الاهتزاز: font-display: swap، وتحميل الخطوط بشكل تدريجي */
+    @font-face {
+      font-family: 'Cairo';
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-display: swap;
+    }
+
+    /* تحديث الألوان لتناسب تصميم Next.js */
+    :root {
+      --bg: #f8f9fb;
+      --text: #0b1220;
+      --navy: #071a3a;
+      --accent: #0070f3;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --glass: rgba(0, 112, 243, 0.05);
+      --success: #10b981;
+      --warning: #f59e0b;
+      font-family: 'Cairo', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    html,
+    body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: var(--navy);
+    }
+
+    /* تصميم هيدر عصري وثابت - تحسين لتجنب الاهتزاز */
+    header.hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      min-height: 500px;
+      background: url('img/hero-bg.jpg') no-repeat center center/cover;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      text-align: right;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Logo / brand - تطوير الشعار ليناسب Next.js - تم جعله Fixed Navbar */
+    .brand {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 24px;
+      background: var(--card);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .brand .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .logo .text .main {
+      font-weight: 900;
+      color: var(--navy);
+      font-size: 22px;
+      letter-spacing: -0.5px;
+    }
+    .logo .text .sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    nav.topnav {
+      display: flex;
+      gap: 8px;
+    }
+    nav.topnav a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--navy);
+      transition: background 0.3s;
+    }
+    nav.topnav a:hover {
+      background: var(--glass);
+    }
+    nav.topnav a.btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 112, 243, 0.3);
+    }
+
+    /* عبارة "امتلك متجر منتجاتك الخاص..." - معالجة التداخل */
+    .hero-kicker-text {
+      position: relative;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      z-index: 5;
+      border-right: 5px solid var(--accent);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    /* حاوية نماذج المتاجر العالمية */
+    .global-store-models {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .store-model {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      min-width: 250px;
+      flex: 1;
+    }
+    .store-model:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    .store-model a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+    }
+    .store-model .icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+    .store-model .icon.baan {
+      background: var(--accent);
+      color: white;
+    }
+    .store-model .icon.baan:hover {
+      background: var(--navy);
+    }
+    .store-model .icon.aviacommerce {
+      background: var(--success);
+      color: white;
+    }
+    .store-model .icon.aviacommerce:hover {
+      background: #0c9569;
+    }
+    .store-model .icon.evershop {
+      background: var(--warning);
+      color: white;
+    }
+    .store-model .icon.evershop:hover {
+      background: #c47f07;
+    }
+    .store-model h3 {
+      font-size: 18px;
+      color: var(--navy);
+      margin: 10px 0;
+      font-weight: 700;
+    }
+    .store-model p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .headline {
+      max-width: 800px;
+      padding: 32px 0;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .headline h1 {
+      font-size: 38px;
+      margin: 0;
+      color: var(--navy);
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .headline p {
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    .cta {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta a {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.3s;
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      max-width: 300px;
+      font-size: 16px;
+    }
+    .cta a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 112, 243, 0.4);
+    }
+    .cta .primary {
+      background: var(--accent);
+      color: white;
+    }
+    .cta .ghost {
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      background: white;
+    }
+
+    /* لماذا بان؟ */
+    .why-us {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 30px 24px;
+      text-align: right;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+    .why-us h2 {
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 900;
+    }
+    .why-us .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-item .number {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-item .label {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+    .why-us p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* كروسيل المتاجر */
+    .carousel-wrap {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      height: 400px;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: var(--navy);
+    }
+    .dotbar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--muted);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active {
+      background: var(--accent);
+    }
+
+    /* معرض المتاجر */
+    .stores-header {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .stores-header h2 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+    .stores-header p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .stores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px;
+    }
+    .store-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      gap: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .store-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    .store-card .title {
+      font-size: 17px;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .mockup {
+      flex-direction: column;
+      gap: 15px;
+    }
+    .mockup .shot {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .mockup .shot img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    .mockup .actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+      gap: 10px;
+    }
+    .icon-link {
+      flex: 1;
+      justify-content: center;
+      padding: 8px 10px;
+      font-size: 14px;
+      background: var(--glass);
+      color: var(--accent);
+      border-radius: 8px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .icon-link:hover {
+      background: var(--accent);
+      color: white;
+    }
+    .admin-badge {
+      flex: 1;
+      justify-content: center;
+      padding: 8px 10px;
+      font-size: 14px;
+      background: var(--navy);
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .store-card > div:last-child {
+      font-size: 13px !important;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+    }
+
+    /* الميزات المطورة */
+    #features {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px;
+    }
+    .features-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .features-header h2 {
+      font-size: 32px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+    .features-header p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .feature {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: right;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    .feature h3 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .feature img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .feature p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* قسم التسويق */
+    .marketing-focus {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px 24px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+    .marketing-focus h2 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    .marketing-focus p {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* قسم التسعير */
+    .pricing-section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 24px;
+    }
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .pricing-header h3 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+    .pricing-header p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .price-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+    }
+    .price-card h4 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .price {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+      text-align: right;
+    }
+    .price-card li {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .price-card .cta {
+      margin-top: 20px;
+    }
+    .price-card .cta a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: transform 0.3s;
+    }
+    .price-card .cta a:hover {
+      transform: translateY(-2px);
+    }
+
+    /* قسم الاتصال */
+    #contact {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px 24px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+    #contact h2 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    #contact p {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    .contact-buttons a {
+      display: block;
+      padding: 15px 20px;
+      margin: 10px 0;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .contact-buttons a:hover {
+      background: var(--navy);
+    }
+    .what-you-get h4 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    .what-you-get ul {
+      list-style: none;
+      padding: 0;
+      text-align: right;
+    }
+    .what-you-get li {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .float-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      left: auto;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .float-contact a {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+    .whatsapp {
+      background: #25D366;
+    }
+    .phone {
+      background: var(--navy);
+    }
+    .float-contact a:hover {
+      transform: scale(1.1);
+    }
+
+    /* الفوتر */
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 50px 0 20px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    .footer-section h5 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .footer-section p {
+      color: #aab7c6;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section li {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .footer-section a {
+      color: #aab7c6;
+      transition: color 0.3s;
+    }
+    .footer-section a:hover {
+      color: white;
+    }
+    .socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: background 0.3s;
+    }
+    .socials a:hover {
+      background: var(--success);
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #aab7c6;
+      color: #aab7c6;
+      font-size: 14px;
+    }
+
+    /* Responsive adjustments for all devices */
+    @media (max-width: 900px) {
+      .brand {
+        padding: 10px 16px;
+      }
+      .brand nav.topnav {
+        display: flex;
+        gap: 8px;
+      }
+      .brand nav.topnav a {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+      .headline h1 {
+        font-size: 30px;
+      }
+      .headline p {
+        font-size: 15px;
+      }
+      .hero-kicker-text {
+        bottom: 30px;
+        right: 15px;
+        left: 15px;
+        font-size: 15px;
+        max-width: calc(100% - 30px);
+        transform: none;
+      }
+      .features {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .stores {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+      }
+      .float-contact {
+        right: 20px;
+        left: auto;
+        bottom: 20px;
+      }
+      .global-store-models {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header.hero {
+        height: 50vh;
+        min-height: 300px;
+        padding-top: 70px;
+      }
+      .brand {
+        padding: 8px 12px;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .brand .logo {
+        order: 2;
+      }
+      nav.topnav {
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .headline h1 {
+        font-size: 24px;
+      }
+      .headline p {
+        font-size: 14px;
+      }
+      .hero-kicker-text {
+        bottom: 20px;
+        font-size: 14px;
+        right: 10px;
+        left: 10px;
+        text-align: center;
+        max-width: calc(100% - 20px);
+        padding: 12px 20px;
+      }
+      .cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cta a {
+        min-width: 100%;
+        max-width: none;
+      }
+      .store-card {
+        padding: 15px;
+      }
+      .mockup .shot img {
+        height: 150px;
+      }
+      .mockup .actions {
+        flex-direction: column;
+      }
+      .why-us .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .carousel {
+        height: 250px;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-buttons a {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+    }
+
+    /* تحسينات إضافية */
+    img {
+      max-width: 100%;
+      height: auto;
+      loading: lazy;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Cairo', sans-serif;
+    }
+    section {
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-kicker-text">
+        <i class="fa fa-tag" style="color: var(--accent); margin-left: 8px;"></i>
+        **امتلك متجر منتجاتك الخاص اليوم** وابدأ في ضخ أرباحك بطريقة ذكية ومستدامة. نحن هنا لنجعل رحلتك نحو النجاح الرقمي سهلة وممتعة.
+      </div>
+
+      <div class="brand">
+        <div class="logo">
+          <img src="img/logo.png" alt="شعار بان BAAN" loading="lazy">
+          <div class="text">
+            <div class="main">BAAN</div>
+            <div class="sub">Full-Stack E-Commerce</div>
+          </div>
+        </div>
+        <nav class="topnav">
+          <a href="#about">لماذا نحن؟</a>
+          <a href="#features">تفاصيل التطوير</a>
+          <a href="#stores">المتاجر</a>
+          <a class="btn btn-primary" href="#contact">ابدأ مشروعك</a>
+        </nav>
+      </div>
+
+      <div class="headline">
+        <h1>حلول برمجية متكاملة (Full-Stack) لإنشاء متاجر إلكترونية احترافية ومخصصة</h1>
+        <p>نحن الشريك المثالي لتحويل فكرتك التجارية إلى واقع رقمي ناجح. نقدم خدمات تطوير كاملة لمواقع الويب وتطبيقات الهواتف الذكية، مع تركيز خاص على بناء وبيع متاجر إلكترونية متقدمة. كمبرمجين Full-Stack محترفين، نغطي كل التفاصيل من الخلفية التقنية القوية إلى الواجهات العصرية الجذابة، مصممة خصيصًا لقطاع التجارة الإلكترونية الذي نتقنه. معنا، ستحصل على أداة قوية لزيادة مبيعاتك، إدارة مخزونك بكفاءة، وجذب عملاء جدد باستمرار. ابدأ الآن بخطوات بسيطة: تواصل معنا، حدد احتياجاتك، وسنقدم خطة مخصصة مع عرض سعر مجاني في غضون 24 ساعة.</p>
+        <div class="cta">
+          <a class="primary" href="#stores"><i class="fa fa-shopping-bag"></i> شاهد أمثلة متاجرنا الجاهزة</a>
+          <a class="ghost" href="#features"><i class="fa fa-cogs"></i> اكتشف الميزات والخدمات الكاملة</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="global-store-models">
+      <div class="store-model">
+        <a href="#" class="baan">
+          <div class="icon baan"><i class="fas fa-store"></i></div>
+          <h3>BAAN Full-Stack</h3>
+          <p>حلول متكاملة لمتاجرك الإلكترونية</p>
+        </a>
+      </div>
+      <div class="store-model">
+        <a href="angularspre.html" class="aviacommerce">
+          <div class="icon aviacommerce"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Aviacommerce</h3>
+          <p>واجهة متقدمة للتطبيق والإدارة</p>
+        </a>
+      </div>
+      <div class="store-model">
+        <a href="evershop.html" class="evershop">
+          <div class="icon evershop"><i class="fas fa-rocket"></i></div>
+          <h3>EverShop</h3>
+          <p>متجر المستقبل بأداء عالي</p>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="why-us" id="about">
+    <h2>لماذا يختار أصحاب الأعمال بان BAAN لاستثمارهم في التجارة الإلكترونية؟</h2>
+    <div class="stats">
+      <div class="stat-item">
+        <span class="number">+500</span>
+        <span class="label">مشروع متجر إلكتروني مكتمل ناجح</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">300%</span>
+        <span class="label">متوسط زيادة في المبيعات لعملائنا</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">24/7</span>
+        <span class="label">دعم فني مستمر واستشارات مجانية</span>
+      </div>
+      <div class="stat-item">
+        <span class="number">100%</span>
+        <span class="label">رضا تام من العملاء والمستثمرين</span>
+      </div>
+    </div>
+    <p>مع سنوات من الخبرة في تطوير أكثر من 500 متجر إلكتروني، نضمن لك حلولاً برمجية متكاملة تجمع بين الأداء العالي والتكلفة المناسبة. سواء كنت مبتدئًا في التجارة الرقمية أو تمتلك شركة كبيرة، سنساعدك في بناء منصة قوية تزيد من أرباحك وتعزز عائد استثمارك بسرعة. انضم إلى مجتمع عملائنا الناجحين وابدأ رحلتك نحو التميز الرقمي اليوم.</p>
+  </section>
+
+  <section class="carousel-wrap" id="stores">
+    <div style="text-align: right; max-width: 1100px; margin: 0 auto; padding: 8px 24px;">
+      <strong class="kicker">معرض الواجهات المتقدمة — أمثلة على متاجرنا المبرمجة بالكامل وجاهزة للإطلاق</strong>
+    </div>
+    <div class="carousel" aria-hidden="false">
+      <div class="slide" data-index="0"><img src="https://mutazali12.github.io/3balrahmanmarket/screenshot1.png" alt="متجر 1 - سوبر ماركت" onerror="this.src='https://via.placeholder.com/1000x600?text=Supermarket+Store'" loading="lazy"></div>
+      <div class="slide" data-index="1"><img src="https://mutazali12.github.io/jasimmarket/screenshot1.png" alt="متجر 2 - إلكترونيات" onerror="this.src='https://via.placeholder.com/1000x600?text=Electronics+Store'" loading="lazy"></div>
+      <div class="slide" data-index="2"><img src="https://mutazali12.github.io/market/screenshot1.png" alt="متجر 3 - أزياء" onerror="this.src='https://via.placeholder.com/1000x600?text=Fashion+Store'" loading="lazy"></div>
+      <div class="slide" data-index="3"><img src="https://img.freepik.com/free-photo/discount-shopping-season-with-sale_23-2150165932.jpg?semt=ais_hybrid&w=740&q=80" alt="متجر 4 - عروض" onerror="this.src='https://via.placeholder.com/1000x600?text=Sale+Store'" loading="lazy"></div>
+    </div>
+    <div class="controls">
+      <button class="btn" onclick="prevSlide()">❮</button>
+      <button class="btn" onclick="nextSlide()">❯</button>
+    </div>
+    <div class="dotbar"></div>
+  </section>
+
+  <section id="features">
+    <div class="features-header">
+      <h2>الميزات التي تجعل متجرك الإلكتروني متميزًا</h2>
+      <p>نقدم مجموعة شاملة من الخدمات التي تضمن نجاح متجرك مع أدوات متقدمة للإدارة والتسويق.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <h3>تصميم واجهة عصرية</h3>
+        <img src="https://via.placeholder.com/300x180?text=Modern+UI" alt="واجهة عصرية" loading="lazy">
+        <p>واجهات جذابة ومتجاوبة تناسب جميع الأجهزة لتحسين تجربة العملاء.</p>
+      </div>
+      <div class="feature">
+        <h3>إدارة المخزون</h3>
+        <img src="https://via.placeholder.com/300x180?text=Inventory" alt="إدارة المخزون" loading="lazy">
+        <p>نظام متقدم لتتبع المخزون وإدارة المنتجات بكفاءة عالية.</p>
+      </div>
+      <div class="feature">
+        <h3>دعم فني 24/7</h3>
+        <img src="https://via.placeholder.com/300x180?text=Support" alt="دعم فني" loading="lazy">
+        <p>فريق دعم متاح على مدار الساعة لحل أي مشكلة تواجهك.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marketing-focus">
+    <h2>ركز على التسويق، واترك التطوير لنا</h2>
+    <p>نقدم حلولاً متكاملة تتيح لك التركيز على استراتيجيات التسويق بينما نحن نعتني بكل التفاصيل التقنية.</p>
+  </div>
+
+  <section class="pricing-section">
+    <div class="pricing-header">
+      <h3>خطط التسعير المناسبة لكل احتياجاتك</h3>
+      <p>اختر الخطة التي تناسب حجم عملك وابدأ رحلتك معنا اليوم.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h4>خطة أساسية</h4>
+        <div class="price">500 ج.م/شهر</div>
+        <ul>
+          <li>متجر بسيط</li>
+          <li>دعم أساسي</li>
+          <li>10 منتجات</li>
+        </ul>
+        <div class="cta">
+          <a href="#contact">اختر الآن</a>
+        </div>
+      </div>
+      <div class="price-card">
+        <h4>خطة احترافية</h4>
+        <div class="price">1000 ج.م/شهر</div>
+        <ul>
+          <li>متجر متقدم</li>
+          <li>دعم 24/7</li>
+          <li>50 منتج</li>
+        </ul>
+        <div class="cta">
+          <a href="#contact">اختر الآن</a>
+        </div>
+      </div>
+      <div class="price-card">
+        <h4>خطة متميزة</h4>
+        <div class="price">2000 ج.م/شهر</div>
+        <ul>
+          <li>متجر مخصص</li>
+          <li>دعم مميز</li>
+          <li>200 منتج</li>
+        </ul>
+        <div class="cta">
+          <a href="#contact">اختر الآن</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>تواصل معنا لتبدأ مشروعك الآن</h2>
+    <p>املأ النموذج أدناه أو اتصل بنا مباشرة للحصول على استشارة مجانية.</p>
+    <div class="contact-grid">
+      <div class="contact-buttons">
+        <a class="whatsapp-btn" href="https://wa.me/201287027277" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp fa-lg"></i> واتساب: +20 1287027277</a>
+        <a class="phone-btn" href="tel:+201122394912"><i class="fa fa-phone fa-lg"></i> اتصل الآن: +20 1122394912</a>
+      </div>
+      <div class="what-you-get">
+        <h4>ما الذي ستحصل عليه؟</h4>
+        <ul>
+          <li>تحليل احتياجاتك المجاني</li>
+          <li>عرض سعر خلال 24 ساعة</li>
+          <li>دعم مستمر</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="float-contact">
+    <a class="whatsapp" href="https://wa.me/201287027277" target="_blank" rel="noopener noreferrer" title="واتساب سريع"><i class="fab fa-whatsapp fa-lg"></i></a>
+    <a class="phone" href="tel:+201122394912" title="اتصال فوري"><i class="fa fa-phone fa-lg"></i></a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-section">
+        <h5>حول بان</h5>
+        <p>نقدم حلولاً تقنية متكاملة لتطوير متاجر إلكترونية احترافية.</p>
+      </div>
+      <div class="footer-section">
+        <h5>روابط سريعة</h5>
+        <ul>
+          <li><a href="#about">لماذا نحن؟</a></li>
+          <li><a href="#stores">المتاجر</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h5>تواصل معنا</h5>
+        <div class="socials">
+          <a href="https://www.facebook.com/share/1KUHJezdxL/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 BAAN. جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel .slide');
+    const dotbar = document.querySelector('.dotbar');
+
+    function showSlide(index) {
+      if (index >= slides.length) currentSlide = 0;
+      if (index < 0) currentSlide = slides.length - 1;
+      const offset = -currentSlide * 100;
+      document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+      updateDots();
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function updateDots() {
+      dotbar.innerHTML = '';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === currentSlide ? ' active' : '');
+        dot.addEventListener('click', () => showSlide(i));
+        dotbar.appendChild(dot);
+      });
+    }
+
+    // إعداد الأزرار والنقاط عند التحميل
+    document.querySelector('.controls .btn:first-child').addEventListener('click', prevSlide);
+    document.querySelector('.controls .btn:last-child').addEventListener('click', nextSlide);
+    updateDots();
+    setInterval(nextSlide, 5000); // تغيير الشريحة كل 5 ثوانٍ
+  </script>
+</body>
+</html>
