@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>بان BAAN — حلول التجارة الإلكترونية المتقدمة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* تعريف الخطوط والتصحيحات الأساسية */
+        @font-face {
+            font-family: 'Cairo';
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-display: swap;
+        }
+
+        /* تحديث الألوان لتناسب تصميم Next.js */
+        :root{
+            --bg: #f8f9fb; /* خلفية أفتح قليلاً */
+            --text: #0b1220;
+            --navy: #071a3a;
+            --accent: #0070f3; /* أزرق Next.js */
+            --muted:#6b7280;
+            --card:#ffffff; /* بطاقة بيضاء نقية */
+            --glass: rgba(0, 112, 243, 0.05); /* ظل خفيف من الأكسنت */
+            --success: #10b981;
+            --warning: #f59e0b;
+            font-family: 'Cairo', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        html,body{
+            height:100%;
+            background:var(--bg);
+            color:var(--text);
+            margin:0;
+            padding:0;
+            scroll-behavior:smooth;
+            overflow-x:hidden;
+            width:100%;
+            box-sizing:border-box;
+            line-height: 1.6; /* تحسين قراءة النصوص الطويلة */
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        a{color:var(--accent);text-decoration:none;transition:color 0.3s}
+        a:hover{color:var(--navy)}
+
+        /* تصميم هيدر عصري وثابت */
+        header.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:80vh;min-height:500px;background:linear-gradient(180deg, var(--bg), #f0f2f7);overflow:hidden;padding-top:80px}
+        .hero-bg-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('img/hero-bg.jpg');background-size:cover;background-position:center;opacity:0.1;z-index:1}
+        .hero-content{position:relative;z-index:2;max-width:1200px;text-align:right;padding:0 24px;width:100%;}
+
+        /* Logo / brand - Fixed Navbar */
+        .brand{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,0.05);z-index:100;width:100%;box-sizing:border-box;}
+        .brand .logo{display:flex;align-items:center;gap:12px}
+        .logo img{
+            width:36px;
+            height:36px;
+            border-radius:50%;
+            object-fit:cover;
+        }
+        .logo .text .main{font-weight:900;color:var(--navy);font-size:22px;letter-spacing:-0.5px}
+        .logo .text .sub{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
+        nav.topnav a{padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;color:var(--navy);transition:background 0.3s}
+        nav.topnav a:hover{background:var(--glass)}
+        nav.topnav a.btn-primary{background:var(--accent);color:white;box-shadow:0 4px 10px rgba(0,112,243,0.3);margin-right:15px;} /* إضافة هامش لزر CTA */
+
+        /* عبارة "امتلك متجر منتجاتك الخاص..." */
+        .hero-kicker-text{
+            position:absolute;
+            bottom:50px;
+            right:50%;
+            transform:translateX(50%);
+            background:rgba(255, 255, 255, 0.95);
+            padding:15px 25px;
+            border-radius:12px;
+            font-weight:800;
+            color:var(--navy);
+            font-size:16px;
+            box-shadow:0 8px 30px rgba(0,0,0,0.15);
+            z-index:5;
+            border-right:5px solid var(--accent);
+            max-width:400px;
+            text-align:center;
+        }
+
+        .headline{max-width:800px;padding:32px 0;text-align:center;margin:0 auto}
+        .headline h1{font-size:38px;margin:0;color:var(--navy);line-height:1.2;font-weight:900}
+        .headline p{margin-top:16px;color:var(--muted);line-height:1.7;font-size:17px}
+        .cta{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+        .cta a{padding:12px 24px;border-radius:10px;font-weight:700;transition:transform 0.2s, box-shadow 0.3s;flex:1;min-width:200px;text-align:center;max-width:300px;font-size:16px;}
+        .cta a:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,112,243,0.4)}
+        .cta .primary{background:var(--accent);color:white}
+        .cta .ghost{border:1px solid var(--navy);color:var(--navy);background:white}
+
+        /* لماذا بان؟ */
+        .why-us{max-width:1200px;margin:50px auto;padding:30px 24px;text-align:right;background:var(--card);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.05)}
+        .why-us h2{font-size:32px;color:var(--navy);margin-bottom:30px;text-align:center;font-weight:900}
+        .why-us .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px}
+        .stat-item .number{font-size:38px;font-weight:900;color:var(--accent);display:block}
+        .stat-item .label{font-size:15px;color:var(--muted);margin-top:5px}
+        .why-us p{font-size:16px;line-height:1.7;color:var(--text);text-align:center;max-width:900px;margin:0 auto}
+
+        /* كروسيل المتاجر */
+        .carousel-wrap { max-width: 1200px; margin: 50px auto; padding: 0 24px; text-align: center; }
+        .carousel-container { overflow: hidden; position: relative; } /* حاوية جديدة لإخفاء الأشرطة */
+        .carousel { display: flex; width: 100%; height: 400px; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .controls { display: flex; justify-content: space-between; gap: 20px; margin: 20px 0; position: absolute; top: 50%; width: 100%; transform: translateY(-50%); z-index: 10; padding: 0 10px; }
+        .btn { background: var(--accent); color: white; border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; transition: background 0.3s; opacity: 0.8; }
+        .btn:hover { background: var(--navy); opacity: 1; }
+        .dotbar { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--muted); cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: var(--accent); }
+
+        /* معرض المتاجر */
+        .stores-header { max-width: 1200px; margin: 50px auto; padding: 0 24px; text-align: center; }
+        .stores-header h2 { font-size: 28px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+        .stores-header p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+        .stores { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+        .store-card { background: var(--card); border-radius: 16px; padding: 20px; gap: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; } /* تصحيح Flex */
+        .store-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+        .store-card .title { font-size: 17px; text-align: center; margin-bottom: 10px; font-weight: 700; color: var(--navy); }
+        .mockup { display: flex; flex-direction: column; gap: 15px; flex-grow: 1; } /* تصحيح Flex */
+        .mockup .shot { width: 100%; border-radius: 12px; overflow: hidden; }
+        .mockup .shot img { height: 200px; object-fit: cover; width: 100%; }
+        .mockup .actions { display: flex; flex-direction: row; justify-content: space-around; width: 100%; gap: 10px; }
+        .icon-link { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 10px; font-size: 14px; background: var(--glass); color: var(--accent); border-radius: 8px; text-align: center; transition: background 0.3s; }
+        .icon-link:hover { background: var(--accent); color: white; }
+        .admin-badge { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 10px; font-size: 14px; background: var(--navy); color: white; border-radius: 8px; text-align: center; }
+        .store-card > div:last-child { font-size: 13px !important; display: flex; justify-content: space-between; gap: 10px; align-items: center; color: var(--muted); }
+
+        /* الميزات المطورة */
+        #features { max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+        .features-header { text-align: center; margin-bottom: 50px; }
+        .features-header h2 { font-size: 32px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+        .features-header p { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 800px; margin: 0 auto; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature { background: var(--card); border-radius: 16px; padding: 24px; text-align: right; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s; display: flex; flex-direction: column; } /* تصحيح Flex */
+        .feature:hover { transform: translateY(-5px); }
+        .feature h3 { font-size: 20px; color: var(--navy); margin-bottom: 15px; font-weight: 700; }
+        .feature img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+        .feature p { font-size: 15px; color: var(--text); line-height: 1.6; flex-grow: 1; } /* تصحيح Flex */
+
+        /* قسم التسعير */
+        .pricing-section { max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+        .pricing-header { text-align: center; margin-bottom: 50px; }
+        .pricing-header h3 { font-size: 28px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+        .pricing-header p { font-size: 16px; color: var(--muted); line-height: 1.6; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .price-card { background: var(--card); border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s; position: relative; overflow: hidden; }
+        .price-card.featured { border: 2px solid var(--accent); box-shadow: 0 8px 30px rgba(0,112,243,0.2); }
+        .price-card:hover { transform: translateY(-5px); }
+        .price-card h4 { font-size: 20px; color: var(--navy); margin-bottom: 15px; font-weight: 700; }
+        .price { font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 20px; }
+        .price-card ul { list-style: none; padding: 0; margin-bottom: 30px; text-align: right; }
+        .price-card li { font-size: 15px; color: var(--text); margin-bottom: 10px; line-height: 1.5; display: flex; align-items: center; justify-content: flex-end; }
+        .price-card li i { margin-right: 10px; color: var(--success); }
+        .price-card .cta { margin-top: 20px; }
+        .price-card .cta a { display: block; padding: 12px 24px; background: var(--accent); color: white; border-radius: 10px; font-weight: 700; transition: background 0.3s; }
+        .price-card .cta a:hover { background: var(--navy); }
+        .price-tag { display: block; font-size: 14px; color: var(--muted); margin-top: -10px; }
+        
+        /* قسم الاتصال */
+        #contact { max-width: 800px; margin: 50px auto; padding: 40px 24px; background: var(--card); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
+        #contact h2 { font-size: 28px; color: var(--navy); margin-bottom: 20px; font-weight: 900; }
+        #contact p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 30px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; text-align: right; }
+        .contact-buttons a { display: flex; align-items: center; justify-content: center; padding: 15px 20px; margin: 10px 0; background: var(--accent); color: white; border-radius: 10px; text-decoration: none; font-weight: 600; transition: background 0.3s; gap: 10px;}
+        .contact-buttons a:hover { background: var(--navy); }
+        .what-you-get h4 { font-size: 20px; color: var(--navy); margin-bottom: 15px; text-align: center; }
+        .what-you-get ul { list-style: none; padding: 0; text-align: right; }
+        .what-you-get li { font-size: 15px; color: var(--text); margin-bottom: 10px; line-height: 1.5; display: flex; align-items: center; justify-content: flex-end; }
+        .what-you-get li i { margin-right: 10px; color: var(--accent); }
+        .marketing-focus { max-width: 800px; margin: 50px auto; padding: 40px 24px; background: var(--card); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
+
+        /* الأزرار العائمة */
+        .float-contact { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+        .float-contact a { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .whatsapp { background: #25D366; }
+        .phone { background: var(--navy); }
+        .float-contact a:hover { transform: scale(1.1); }
+
+        /* الفوتر */
+        footer { background: var(--navy); color: white; padding: 50px 0 20px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: right; } /* تصحيح اتجاه النص */
+        .footer-section h5 { font-size: 18px; margin-bottom: 15px; font-weight: 700; }
+        .footer-section p { color: #aab7c6; font-size: 14px; line-height: 1.5; }
+        .footer-section ul { list-style: none; padding: 0; }
+        .footer-section li { margin-bottom: 10px; font-size: 14px; }
+        .footer-section a { color: #aab7c6; transition: color 0.3s; }
+        .footer-section a:hover { color: white; }
+        .socials { display: flex; gap: 15px; margin-top: 15px; justify-content: flex-end; } /* تصحيح اتجاه الأزرار */
+        .socials a { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; transition: background 0.3s; }
+        .socials a:hover { background: var(--success); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #aab7c6; color: #aab7c6; font-size: 14px; margin-top: 30px; }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .brand { padding: 10px 16px; }
+            .brand nav.topnav { display: flex; gap: 8px; }
+            .brand nav.topnav a { padding: 6px 10px; font-size: 13px; }
+            .headline h1 { font-size: 30px; }
+            .headline p { font-size: 15px; }
+            .hero-kicker-text { bottom: 30px; right: 15px; left: 15px; font-size: 15px; max-width: calc(100% - 30px); transform: none; }
+            .features { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .stores { grid-template-columns: 1fr; gap: 20px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: right; gap: 30px; } /* Footer sections still aligned right */
+            .float-contact { right: 20px; left: auto; bottom: 20px; }
+            .socials { justify-content: flex-start; } /* تصحيح اتجاه السوشال ميديا */
+        }
+
+        @media (max-width: 600px) {
+            header.hero { height: 70vh; padding-top: 70px; }
+            .brand { padding: 8px 12px; flex-direction: row; justify-content: space-between; gap: 8px; } /* تصحيح Navbar على الجوال */
+            .brand .logo { order: 1; }
+            nav.topnav { display: none; } /* إخفاء قائمة التنقل على الجوال */
+            .headline h1 { font-size: 24px; }
+            .headline p { font-size: 14px; }
+            .hero-kicker-text { bottom: 20px; font-size: 14px; right: 10px; left: 10px; text-align: center; max-width: calc(100% - 20px); padding: 12px 20px; }
+            .cta { flex-direction: column; align-items: center; }
+            .cta a { min-width: 100%; max-width: none; }
+            .store-card { padding: 15px; }
+            .mockup .shot img { height: 150px; }
+            .mockup .actions { flex-direction: column; }
+            .why-us .stats { grid-template-columns: repeat(2, 1fr); }
+            .carousel { height: 250px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .contact-buttons a { padding: 12px 16px; font-size: 14px; }
+            .float-contact { right: 10px; left: auto; bottom: 10px; }
+        }
+
+        /* تحسينات إضافية */
+        img { max-width: 100%; height: auto; loading: lazy; }
+        h1, h2, h3, h4, h5 { font-family: 'Cairo', sans-serif; }
+        section { padding: 40px 0; }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-kicker-text">
+            <i class="fa fa-tag" style="color:var(--accent); margin-left:8px;"></i>
+            **امتلك متجر منتجاتك الخاص اليوم** وابدأ في ضخ أرباحك بطريقة ذكية ومستدامة. نحن هنا لنجعل رحلتك نحو النجاح الرقمي سهلة وممتعة.
+        </div>
+        
+        <div class="brand">
+            <div class="logo">
+                <img src="img/logo.png" alt="شعار بان BAAN" loading="lazy">
+                <div class="text">
+                    <div class="main">BAAN</div>
+                    <div class="sub">Full-Stack E-Commerce</div>
+                </div>
+            </div>
+            <nav class="topnav">
+                <a href="#about">لماذا نحن؟</a>
+                <a href="#features">تفاصيل التطوير</a>
+                <a href="#stores">المتاجر</a>
+                <a href="#pricing">التسعير</a>
+                <a class="btn btn-primary" href="#contact">ابدأ مشروعك</a>
+            </nav>
+        </div>
+
+        <div class="hero-content">
+            <div class="headline">
+                <h1>حلول برمجية متكاملة (Full-Stack) لإنشاء متاجر إلكترونية احترافية ومخصصة</h1>
+                <p>نحن الشريك المثالي لتحويل فكرتك التجارية إلى واقع رقمي ناجح. نقدم خدمات تطوير كاملة لمواقع الويب وتطبيقات الهواتف الذكية، مع تركيز خاص على بناء وبيع متاجر إلكترونية متقدمة. كمبرمجين Full-Stack محترفين، نغطي كل التفاصيل من الخلفية التقنية القوية إلى الواجهات العصرية الجذابة، مصممة خصيصًا لقطاع التجارة الإلكترونية الذي نتقنه. معنا، ستحصل على أداة قوية لزيادة مبيعاتك، إدارة مخزونك بكفاءة، وجذب عملاء جدد باستمرار. ابدأ الآن بخطوات بسيطة: تواصل معنا، حدد احتياجاتك، وسنقدم خطة مخصصة مع عرض سعر مجاني في غضون 24 ساعة.</p>
+                <div class="cta">
+                    <a class="primary" href="#stores"><i class="fa fa-shopping-bag"></i> شاهد أمثلة متاجرنا الجاهزة</a>
+                    <a class="ghost" href="#features"><i class="fa fa-cogs"></i> اكتشف الميزات والخدمات الكاملة</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="why-us" id="about">
+        <h2>لماذا يختار أصحاب الأعمال بان BAAN لاستثمارهم في التجارة الإلكترونية؟</h2>
+        <div class="stats">
+            <div class="stat-item">
+                <span class="number">+500</span>
+                <span class="label">مشروع متجر إلكتروني مكتمل ناجح</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">300%</span>
+                <span class="label">متوسط زيادة في المبيعات لعملائنا</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">24/7</span>
+                <span class="label">دعم فني مستمر واستشارات مجانية</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">100%</span>
+                <span class="label">رضا تام من العملاء والمستثمرين</span>
+            </div>
+        </div>
+        <p>مع سنوات من الخبرة في تطوير أكثر من 500 متجر إلكتروني، نضمن لك حلولاً برمجية متكاملة تجمع بين الأداء العالي والتكلفة المناسبة. سواء كنت مبتدئًا في التجارة الرقمية أو تمتلك شركة كبيرة، سنساعدك في بناء منصة قوية تزيد من أرباحك وتعزز عائد استثمارك بسرعة. انضم إلى مجتمع عملائنا الناجحين وابدأ رحلتك نحو التميز الرقمي اليوم.</p>
+    </section>
+
+    <section class="carousel-wrap" id="stores">
+        <div style="text-align:center;max-width:1100px;margin:0 auto;padding:8px 24px;"><strong class="kicker" style="color:var(--accent);font-weight:700;">معرض الواجهات المتقدمة</strong></div>
+        <h2 style="font-size: 28px; color: var(--navy); margin-bottom: 30px; font-weight: 900; text-align: center;">أمثلة على متاجرنا المبرمجة بالكامل وجاهزة للإطلاق</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="slide" data-index="0"><img src="https://mutazali12.github.io/3balrahmanmarket/screenshot1.png" alt="متجر 1 - سوبر ماركت" onerror="this.src='https://via.placeholder.com/1000x400?text=Supermarket+Store'" loading="lazy"></div>
+                <div class="slide" data-index="1"><img src="https://mutazali12.github.io/jasimmarket/screenshot1.png" alt="متجر 2 - إلكترونيات" onerror="this.src='https://via.placeholder.com/1000x400?text=Electronics+Store'" loading="lazy"></div>
+                <div class="slide" data-index="2"><img src="https://mutazali12.github.io/market/screenshot1.png" alt="متجر 3 - أزياء" onerror="this.src='https://via.placeholder.com/1000x400?text=Fashion+Store'" loading="lazy"></div>
+                <div class="slide" data-index="3"><img src="https://img.freepik.com/free-photo/discount-shopping-season-with-sale_23-2150165932.jpg?semt=ais_hybrid&w=740&q=80" alt="متجر 4 - منتجات رقمية" onerror="this.src='https://via.placeholder.com/1000x400?text=Digital+Products'" loading="lazy"></div>
+                <div class="slide" data-index="4"><img src="https://assets.mediamodifier.com/mockups/5b053bb8306e03fd32cc5e78/ecommerce-laptop-mockup-with-a-shopping-cart_thumb.jpg" alt="متجر 5 - خدمات وحجوزات" onerror="this.src='https://via.placeholder.com/1000x400?text=Services+and+Booking'" loading="lazy"></div>
+                <div class="slide" data-index="5"><img src="https://img.freepik.com/free-psd/black-friday-mockup-with-laptop_23-2147703701.jpg" alt="متجر 6 - أزياء فاخرة" onerror="this.src='https://via.placeholder.com/1000x400?text=Luxury+Fashion'" loading="lazy"></div>
+            </div>
+            <div class="controls">
+                <button class="btn prev" aria-label="السابق"><i class="fa fa-chevron-right"></i></button>
+                <button class="btn next" aria-label="التالي"><i class="fa fa-chevron-left"></i></button>
+            </div>
+        </div>
+        <div class="dotbar" id="dots"></div>
+    </section>
+    
+    <div class="stores-header">
+        <h2>معرض المتاجر الستة التي نقوم ببيعها وبرمجتها باحترافية</h2>
+        <p>اكتشف ستة نماذج أساسية قابلة للتخصيص الكامل، مصممة لتناسب مختلف القطاعات التجارية مثل السوبر ماركت، الإلكترونيات، الملابس، المنتجات الرقمية، الخدمات، والتجارة الإلكترونية المتعددة البائعين. كل نموذج جاهز للإطلاق مع دعم فني مستمر.</p>
+    </div>
+    <section class="stores">
+        <div class="store-card">
+            <div class="title"><i class="fa fa-shopping-basket" style="color:var(--accent); margin-left:5px;"></i> متجر 3balrahmanmarket - سوبر ماركت يومي</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://mutazali12.github.io/3balrahmanmarket/screenshot1.png" alt="عرض متجر 3balrahmanmarket على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+1'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="https://mutazali12.github.io/3balrahmanmarket/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="https://mutazali12.github.io/3balrahmanmarket/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+        <div class="store-card">
+            <div class="title"><i class="fa fa-laptop" style="color:var(--accent); margin-left:5px;"></i> متجر jasimmarket - إلكترونيات وأجهزة</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://mutazali12.github.io/jasimmarket/screenshot1.png" alt="عرض متجر jasimmarket على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+2'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="https://mutazali12.github.io/jasimmarket/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="https://mutazali12.github.io/jasimmarket/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+        <div class="store-card">
+            <div class="title"><i class="fa fa-tshirt" style="color:var(--accent); margin-left:5px;"></i> متجر market - ملابس وأزياء عصرية</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://mutazali12.github.io/market/screenshot1.png" alt="عرض متجر market على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+3'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="https://mutazali12.github.io/market/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="https://mutazali12.github.io/market/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+        <div class="store-card">
+            <div class="title"><i class="fa fa-file-invoice" style="color:var(--accent); margin-left:5px;"></i> متجر DigitalHub - منتجات رقمية ودورات</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://assets.mediamodifier.com/mockups/5b053bb8306e03fd32cc5e78/ecommerce-laptop-mockup-with-a-shopping-cart_thumb.jpg" alt="عرض متجر DigitalHub على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+4'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+        <div class="store-card">
+            <div class="title"><i class="fa fa-handshake" style="color:var(--accent); margin-left:5px;"></i> متجر ServicePro - حجوزات وخدمات احترافية</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://spng.pngfind.com/pngs/s/146-1462338_mockup-ecommerce-website-on-laptop-hd-png-download.png" alt="عرض متجر ServicePro على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+5'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+        <div class="store-card">
+            <div class="title"><i class="fa fa-gem" style="color:var(--accent); margin-left:5px;"></i> متجر FashionElite - أزياء فاخرة وإكسسوارات</div>
+            <div class="mockup">
+                <div class="shot">
+                    <img src="https://img.freepik.com/free-psd/black-friday-mockup-with-laptop_23-2147703701.jpg" alt="عرض متجر FashionElite على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+6'" loading="lazy">
+                </div>
+                <div class="actions">
+                    <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+                    <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+                </div>
+            </div>
+            <div style="margin-top:15px;">
+                <span><i class="fa fa-check-circle" style="color:var(--success); margin-left:5px;"></i> دومين .com مجاني</span>
+                <span><i class="fa fa-mobile-alt" style="color:var(--success); margin-left:5px;"></i> تطبيق جوال</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="features-header">
+            <h2>🥇 الميزات المضمنة في كل متجر نبرمجه</h2>
+            <p>حلولنا التقنية تعتمد على أحدث تقنيات Full-Stack مثل Next.js لضمان السرعة، الأمان، وقابلية التوسع. نضمن لك متجرًا جاهزًا لزيادة أرباحك وإدارة عملياتك بكفاءة عالية.</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h3>تطبيق موبايل متكامل (iOS/Android)</h3>
+                <img src="https://img.freepik.com/premium-photo/modern-smartphone-laptop-screen-mockup-app-ui-ux-design-template_56104-1845.jpg?w=1060&q=80" alt="صورة تطبيق جوال" onerror="this.src='https://via.placeholder.com/400x180?text=Mobile+App+Feature'" loading="lazy">
+                <p>تطبيق جوال أصلي وجاهز للنشر على Google Play و App Store. يدعم الإشعارات الفورية، تتبع الطلبات المباشر، وجميع بوابات الدفع الآمنة، مما يضمن تجربة شراء سلسة لعملائك.</p>
+            </div>
+            <div class="feature">
+                <h3>واجهات متجاوبة وعصرية (Next.js & React)</h3>
+                <img src="https://img.freepik.com/free-vector/gradient-responsive-web-design-template_23-2149177114.jpg?w=1060&t=st=1701389025~exp=1701389625~hmac=a41c1b1c3e3906f3e1c69b2d285b54634027419f8601d003a273f55c822e707b" alt="صورة واجهات عصرية" onerror="this.src='https://via.placeholder.com/400x180?text=Modern+Interfaces+Feature'" loading="lazy">
+                <p>تصميم متجر إلكتروني جذاب، عصري، ومتجاوب (Responsive) 100% مع جميع أحجام الشاشات. يتميز بواجهة مستخدم (UI) سهلة الاستخدام وتجربة مستخدم (UX) ممتازة، مستوحاة من أحدث معايير الويب.</p>
+            </div>
+            <div class="feature">
+                <h3>لوحة تحكم ذكية وإدارة شاملة</h3>
+                <img src="https://img.freepik.com/free-photo/view-3d-dashboard-with-graphs-charts_23-2150791485.jpg?w=1060&t=st=1701388863~exp=1701389463~hmac=a50c8e23f140660604c538a7b938563c63a54d33457a41235b0b973c91af619d" alt="صورة لوحة التحكم" onerror="this.src='https://via.placeholder.com/400x180?text=Dashboard+Feature'" loading="lazy">
+                <p>لوحة تحكم إدارية شاملة تغطي كل احتياجاتك: إحصاءات المبيعات، إدارة المخزون الذكي، المحاسبة الأساسية، إدارة الطلبات، وحسابات العملاء، كل ذلك في مكان واحد سهل الاستخدام.</p>
+            </div>
+            <div class="feature">
+                <h3>برمجة خلفية قوية وآمنة (Back-End)</h3>
+                <img src="https://img.freepik.com/free-photo/server-room-background_53876-13677.jpg?w=1060&t=st=1701389069~exp=1701389669~hmac=19999f8d3c52a32193b223d6a693126f555e5c707d8382348c40b793664d47e7" alt="صورة خوادم" onerror="this.src='https://via.placeholder.com/400x180?text=Back-End+Feature'" loading="lazy">
+                <p>نظام برمجي خلفي يعتمد على أحدث التقنيات لضمان أعلى مستويات الأداء والأمان. خوادم سريعة وقوية، شهادة SSL مجانية، وبنية تحتية تدعم نمو متجرك إلى ملايين المنتجات والعملاء.</p>
+            </div>
+            <div class="feature">
+                <h3>بوابات دفع وشحن متكاملة</h3>
+                <img src="https://img.freepik.com/free-photo/cropped-view-male-hand-holding-mobile-phone-while-using-credit-card-online-payment-concept_1232-1590.jpg?w=1060&t=st=1701389087~exp=1701389687~hmac=746a6f112e75e925b398687258e72c5443314631627f5835c2b0d02b54d37554" alt="صورة الدفع" onerror="this.src='https://via.placeholder.com/400x180?text=Payment+Integration+Feature'" loading="lazy">
+                <p>تكامل سهل وسريع مع كافة بوابات الدفع المحلية والدولية (مثل مدى، فيزا، ماستركارد، Apple Pay، PayPal)، بالإضافة إلى ربط شركات الشحن المفضلة لديك.</p>
+            </div>
+            <div class="feature">
+                <h3>دعم فني واستشارات متخصصة</h3>
+                <img src="https://img.freepik.com/free-photo/support-service-concept-with-man-working_23-2150247605.jpg?w=1060&t=st=1701389104~exp=1701389704~hmac=ed562a04870e28151978280f5d50684f85e499d63c4377a28e7e1f68f84752c4" alt="صورة الدعم الفني" onerror="this.src='https://via.placeholder.com/400x180?text=Technical+Support+Feature'" loading="lazy">
+                <p>نقدم دعمًا فنيًا متواصلاً على مدار الساعة واستشارات مجانية لضمان استمرارية عمل متجرك. نحافظ على متجرك محدثًا وآمنًا باستمرار لتقديم أفضل تجربة لعملائك.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="full-scope" style="max-width: 1200px; margin: 50px auto; padding: 40px 24px; text-align: right; background: var(--navy); color: white; border-radius: 16px;">
+        <h2 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: white; text-align: center;">خبرة برمجية تتجاوز التجارة الإلكترونية</h2>
+        <p style="font-size: 16px; line-height: 1.8; color: #aab7c6; text-align: center; max-width: 900px; margin: 0 auto;">
+            نحن لا نقتصر على تطوير المتاجر فحسب، بل نعمل في **جميع مجالات البرمجة والتطوير**؛ بدءًا من أنظمة إدارة الموارد (ERP)، أنظمة إدارة علاقات العملاء (CRM)، تطوير الـ Blockchains، وحتى تصميم وتطوير التطبيقات الخاصة والمخصصة كليًا (Custom Software Development).
+            </p>
+        <p style="font-size: 16px; line-height: 1.8; color: #aab7c6; text-align: center; max-width: 900px; margin: 20px auto 0;">
+            لدينا أيضًا **أكواد مفتوحة المصدر (Open Source)** لمجموعة مختارة من المتاجر العالمية الشهيرة، والتي يمكننا **تخصيصها بالكامل** لتتناسب مع متطلبات عملك الفريدة وتوفير وقت وجهد البدء. تواصل معنا لمناقشة مشروعك أيًا كان حجمه أو تعقيده.
+        </p>
+        <div class="cta" style="margin-top: 30px;">
+            <a class="ghost" href="#contact" style="background:var(--accent); color:white; border:none; max-width: 350px;"><i class="fa fa-code" style="margin-left: 10px;"></i> استكشف حلول البرمجة المخصصة</a>
+        </div>
+    </section>
+    
+    <section class="pricing-section" id="pricing">
+        <div class="pricing-header">
+            <h3>خطط التسعير - دفعة واحدة بدون اشتراكات شهرية مُكلفة</h3>
+            <p>نقدم حلولنا بنظام الدفع لمرة واحدة لتملك المتجر بالكامل. تشمل جميع الباقات دعمًا فنيًا واستضافة سريعة في السنة الأولى. الرسوم السنوية تضمن استمرارية الدعم الفني، الاستضافة، والدومين. </p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4>الباقة الأساسية</h4>
+                <div class="price">5000 <span style="font-size:18px;">ج.م.</span></div>
+                <span class="price-tag">دفعة واحدة لتطوير المتجر</span>
+                <span class="price-tag" style="color:var(--warning);font-weight:700;margin-top:10px;">رسوم تجديد سنوي: 3000 ج.م.</span>
+                <ul>
+                    <li><i class="fa fa-check-circle"></i> متجر إلكتروني ويب متجاوب</li>
+                    <li><i class="fa fa-check-circle"></i> لوحة تحكم إدارية متكاملة</li>
+                    <li><i class="fa fa-check-circle"></i> دومين .com مجاني (سنة أولى)</li>
+                    <li><i class="fa fa-check-circle"></i> استضافة آمنة وسريعة (سنة أولى)</li>
+                    <li><i class="fa fa-check-circle"></i> تكامل بوابتي دفع رئيسيتين</li>
+                    <li><i class="fa fa-check-circle"></i> تقارير وإحصاءات أساسية</li>
+                    <li style="color:var(--muted);"><i class="fa fa-times-circle" style="color:red;"></i> لا تشمل تطبيق جوال</li>
+                    <li><i class="fa fa-check-circle"></i> دعم فني وصيانة لمدة 3 أشهر</li>
+                </ul>
+                <div class="cta">
+                    <a href="#contact">ابدأ بالباقة الأساسية</a>
+                </div>
+            </div>
+
+            <div class="price-card featured">
+                <h4>الباقة الاحترافية (الأكثر طلباً)</h4>
+                <div class="price">20000 <span style="font-size:18px;">ج.م.</span></div>
+                <span class="price-tag">دفعة واحدة لتطوير المتجر والتطبيق</span>
+                <span class="price-tag" style="color:var(--warning);font-weight:700;margin-top:10px;">رسوم تجديد سنوي: 3000 ج.م.</span>
+                <ul>
+                    <li><i class="fa fa-check-circle"></i> جميع ميزات الباقة الأساسية</li>
+                    <li><i class="fa fa-check-circle"></i> **تطبيق جوال أصلي متكامل (iOS/Android)**</li>
+                    <li><i class="fa fa-check-circle"></i> لوحة تحكم متقدمة مع محاسبة ومخزون ذكي</li>
+                    <li><i class="fa fa-check-circle"></i> تكامل 5 بوابات دفع محلية ودولية</li>
+                    <li><i class="fa fa-check-circle"></i> خطة تسويقية استراتيجية أولية مجانية</li>
+                    <li><i class="fa fa-check-circle"></i> تحسين محركات البحث SEO متقدم</li>
+                    <li><i class="fa fa-check-circle"></i> تكامل مع أنظمة شحن متعددة</li>
+                    <li><i class="fa fa-check-circle"></i> دعم فني وصيانة لمدة 6 أشهر</li>
+                </ul>
+                <div class="cta">
+                    <a href="#contact">اطلب الباقة الاحترافية</a>
+                </div>
+            </div>
+
+            <div class="price-card">
+                <h4>الشركات والمؤسسات</h4>
+                <div class="price" style="font-size: 28px;">عرض سعر خاص</div>
+                <span class="price-tag">لتلبية احتياجات الشركات الكبرى</span>
+                <span class="price-tag" style="color:var(--muted);font-weight:600;margin-top:10px;">تحديد الرسوم السنوية حسب الاتفاق</span>
+                <ul>
+                    <li><i class="fa fa-check-circle"></i> نظام متجر متعدد البائعين (Multi-Vendor)</li>
+                    <li><i class="fa fa-check-circle"></i> برمجة ميزات مخصصة (Custom Development)</li>
+                    <li><i class="fa fa-check-circle"></i> دمج أنظمة ERP و CRM متقدم</li>
+                    <li><i class="fa fa-check-circle"></i> استشارات تقنية وإدارة مشروع</li>
+                    <li><i class="fa fa-check-circle"></i> ضمان جودة واختبارات شاملة</li>
+                    <li><i class="fa fa-check-circle"></i> دعم وصيانة سنة كاملة</li>
+                    <li><i class="fa fa-check-circle"></i> تدريب كامل للفريق الإداري</li>
+                    <li><i class="fa fa-check-circle"></i> استضافة مخصصة وخوادم سحابية</li>
+                </ul>
+                <div class="cta">
+                    <a href="#contact" style="background:var(--navy);">اطلب عرضاً مخصصاً</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="marketing-focus">
+        <h2>🚀 دليل النجاح الشامل لمنتجاتنا: خطة تسويقية مجانية مع كل باقة</h2>
+        <p>لا نقتصر على برمجة متجرك فحسب، بل نقدم مع كل باقة متقدمة خطة تسويقية استراتيجية أولية مجانية تمامًا. تشمل هذه الخطة تحليلًا دقيقًا لجمهورك المستهدف، إعدادات محركات البحث (SEO) المتقدمة، واستراتيجيات إطلاق قوية لضمان أول مبيعاتك في أسابيع قليلة. بالإضافة إلى ذلك، نقدم نصائح حول التسويق عبر وسائل التواصل الاجتماعي، الإعلانات المدفوعة، وبناء قائمة بريدية فعالة. استثمر في منتج متكامل يدعم نموك المستدام ويحقق أهدافك التجارية بكفاءة عالية.</p>
+        <div class="cta">
+            <a class="primary" href="#contact"><i class="fa fa-bullhorn" style="margin-left: 10px;"></i> اكتشف كيف نساعدك على النمو</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>هل أنت مستعد للانطلاق؟ تواصل معنا الآن!</h2>
+        <p>نحن جاهزون للاستماع إلى أفكارك وتحويلها إلى متجر إلكتروني يحقق لك الأرباح. احصل على استشارة مجانية وعرض سعر في أقل من 24 ساعة.</p>
+        <div class="contact-grid">
+            <div class="contact-buttons">
+                <h4>التواصل السريع:</h4>
+                <a href="https://wa.me/XXXXXXXXXXXX" target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i> تواصل عبر الواتساب (الأسرع)</a>
+                <a href="tel:+XXXXXXXXXXXX" target="_blank" class="phone"><i class="fa fa-phone-alt"></i> اتصال مباشر</a>
+                <a href="mailto:info@baan.com" target="_blank" style="background:#dc2626;"><i class="fa fa-envelope"></i> أرسل بريداً إلكترونياً</a>
+            </div>
+            <div class="what-you-get">
+                <h4>ما ستحصل عليه:</h4>
+                <ul>
+                    <li><i class="fa fa-award"></i> متجر مملوك لك بالكامل (دفعة واحدة)</li>
+                    <li><i class="fa fa-shield-alt"></i> دعم فني على مدار الساعة</li>
+                    <li><i class="fa fa-rocket"></i> أسرع وقت تسليم في السوق</li>
+                    <li><i class="fa fa-cogs"></i> برمجة احترافية بأحدث التقنيات</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-section">
+                <h5>BAAN - التجارة الإلكترونية</h5>
+                <p>متخصصون في تقديم حلول برمجية متكاملة لإنشاء متاجر إلكترونية احترافية وتطبيقات موبايل، مع ضمان الجودة والأداء العالي.</p>
+            </div>
+            <div class="footer-section">
+                <h5>روابط سريعة</h5>
+                <ul>
+                    <li><a href="#about">لماذا بان؟</a></li>
+                    <li><a href="#features">ميزات متقدمة</a></li>
+                    <li><a href="#pricing">خطط التسعير</a></li>
+                    <li><a href="#contact">ابدأ مشروعك</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>تواصل معنا</h5>
+                <ul>
+                    <li><i class="fa fa-envelope" style="margin-left: 5px;"></i> info@baan.com</li>
+                    <li><i class="fa fa-phone-alt" style="margin-left: 5px;"></i> +XXXXXXXXXXXX</li>
+                    <li><i class="fa fa-map-marker-alt" style="margin-left: 5px;"></i> مقرنا: مصر، القاهرة</li>
+                </ul>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 بان BAAN. جميع الحقوق محفوظة. | صنع بعناية في مصر
+        </div>
+    </footer>
+
+    <div class="float-contact">
+        <a href="https://wa.me/XXXXXXXXXXXX" target="_blank" class="whatsapp" aria-label="تواصل عبر واتساب"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+XXXXXXXXXXXX" target="_blank" class="phone" aria-label="اتصال مباشر"><i class="fa fa-phone-alt"></i></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ------------------------------------
+            // 1. منطق الكاروسيل (Carousel Logic)
+            // ------------------------------------
+            const carousel = document.getElementById('carousel');
+            const slides = document.querySelectorAll('.slide');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            const dotContainer = document.getElementById('dots');
+            let currentIndex = 0;
+
+            // إنشاء النقاط (Dots)
+            const createDots = () => {
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                    dotContainer.appendChild(dot);
+                });
+            };
+
+            // تحديث الكاروسيل
+            const updateCarousel = () => {
+                const offset = -currentIndex * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+
+                // تحديث النقاط
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            };
+
+            // التبديل إلى الشريحة التالية
+            const goToNext = () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            };
+
+            // التبديل إلى الشريحة السابقة
+            const goToPrev = () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateCarousel();
+            };
+
+            // ربط الأزرار
+            nextButton.addEventListener('click', goToNext);
+            prevButton.addEventListener('click', goToPrev);
+
+            // تشغيل التبديل التلقائي
+            let autoSlide = setInterval(goToNext, 5000); // تغيير كل 5 ثوانٍ
+
+            // إيقاف التبديل التلقائي عند التفاعل
+            carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+            carousel.addEventListener('mouseleave', () => autoSlide = setInterval(goToNext, 5000));
+            
+            createDots();
+            updateCarousel(); // لضمان الإعداد الأولي الصحيح
+
+            // ------------------------------------
+            // 2. منطق Navbar على الجوال (Mobile Navbar)
+            // ------------------------------------
+            // تم إخفاء قائمة nav.topnav في CSS على شاشات الجوال،
+            // يمكن إضافة زر همبرغر ونافذة منبثقة (pop-up/drawer) هنا إذا لزم الأمر،
+            // لكن التصميم الحالي يعتمد على إظهار الـ CTA مباشرة على الجوال.
+
+            // ------------------------------------
+            // 3. منع انتقال القفز على الروابط الفارغة (Prevent Empty Link Jumps)
+            // ------------------------------------
+            document.querySelectorAll('a[href="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
