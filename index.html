@@ -20,143 +20,69 @@
     }
 
     /* تحديث الألوان لتناسب تصميم Next.js */
-    :root {
-      --bg: #f8f9fb;
+    :root{
+      --bg: #f8f9fb; /* خلفية أفتح قليلاً */
       --text: #0b1220;
       --navy: #071a3a;
-      --accent: #0070f3;
-      --muted: #6b7280;
-      --card: #ffffff;
-      --glass: rgba(0, 112, 243, 0.05);
+      --accent: #0070f3; /* أزرق Next.js */
+      --muted:#6b7280;
+      --card:#ffffff; /* بطاقة بيضاء نقية */
+      --glass: rgba(0, 112, 243, 0.05); /* ظل خفيف من الأكسنت */
       --success: #10b981;
       --warning: #f59e0b;
       font-family: 'Cairo', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
-    html,
-    body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: var(--navy);
-    }
+    html,body{height:100%;background:var(--bg);color:var(--text);margin:0;padding:0;scroll-behavior:smooth;overflow-x:hidden;width:100%;box-sizing:border-box;}
+    *, *::before, *::after { box-sizing: border-box; }
+    a{color:var(--accent);text-decoration:none;transition:color 0.3s}
+    a:hover{color:var(--navy)}
 
     /* تصميم هيدر عصري وثابت - تحسين لتجنب الاهتزاز */
-    header.hero {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 80vh;
-      min-height: 500px;
-      background: url('img/hero-bg.jpg') no-repeat center center/cover;
-      overflow: hidden;
-      padding-top: 80px;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      text-align: right;
-      padding: 0 24px;
-      width: 100%;
-    }
+    header.hero{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:80vh;min-height:500px;background:url('img/hero-bg.jpg') no-repeat center center/cover;overflow:hidden;padding-top:80px}
+    .hero-content{position:relative;z-index:2;max-width:1200px;text-align:right;padding:0 24px;width:100%;}
 
     /* Logo / brand - تطوير الشعار ليناسب Next.js - تم جعله Fixed Navbar */
-    .brand {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 24px;
-      background: var(--card);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      z-index: 1000;
-      width: 100%;
-      box-sizing: border-box;
+    .brand{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,0.05);z-index:1000;width:100%;box-sizing:border-box;}
+    .brand .logo{display:flex;align-items:center;gap:12px}
+    .logo img{
+      width:36px; /* تصغير حجم اللوجو قليلاً */
+      height:36px;
+      border-radius:50%;
+      object-fit:cover;
     }
-    .brand .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .logo img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .logo .text .main {
-      font-weight: 900;
-      color: var(--navy);
-      font-size: 22px;
-      letter-spacing: -0.5px;
-    }
-    .logo .text .sub {
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 600;
-      margin-top: 2px;
-    }
-    nav.topnav {
-      display: flex;
-      gap: 8px;
-    }
-    nav.topnav a {
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--navy);
-      transition: background 0.3s;
-    }
-    nav.topnav a:hover {
-      background: var(--glass);
-    }
-    nav.topnav a.btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 10px rgba(0, 112, 243, 0.3);
+    .logo .text .main{font-weight:900;color:var(--navy);font-size:22px;letter-spacing:-0.5px} /* تصغير الخط */
+    .logo .text .sub{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px} /* تصغير الخط */
+    nav.topnav a{padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;color:var(--navy);transition:background 0.3s} /* تصغير الخط */
+    nav.topnav a:hover{background:var(--glass)}
+    nav.topnav a.btn-primary{background:var(--accent);color:white;box-shadow:0 4px 10px rgba(0,112,243,0.3)}
+
+    /* عبارة "امتلك متجر منتجاتك الخاص..." - معالجة التداخل وتجنب الاهتزاز */
+    .hero-kicker-text{
+        position:absolute;
+        bottom:50px; /* أسفل يمين صورة الهيدر */
+        right:50%;
+        transform:translateX(50%); /* توسيط في الأجهزة الكبيرة */
+        background:rgba(255, 255, 255, 0.95);
+        padding:15px 25px;
+        border-radius:12px;
+        font-weight:800;
+        color:var(--navy);
+        font-size:16px; /* تصغير الخط */
+        box-shadow:0 8px 30px rgba(0,0,0,0.15);
+        z-index:5;
+        border-right:5px solid var(--accent); /* تصميم عصري */
+        max-width:400px;
+        text-align:center;
     }
 
-    /* عبارة "امتلك متجر منتجاتك الخاص..." - معالجة التداخل */
-    .hero-kicker-text {
-      position: relative;
-      margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-weight: 800;
-      color: var(--navy);
-      font-size: 16px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-      z-index: 5;
-      border-right: 5px solid var(--accent);
-      max-width: 400px;
-      text-align: center;
-    }
+    .headline{max-width:800px;padding:32px 0;text-align:center;margin:0 auto}
+    .headline h1{font-size:38px;margin:0;color:var(--navy);line-height:1.2;font-weight:900} /* تصغير الخط */
+    .headline p{margin-top:16px;color:var(--muted);line-height:1.7;font-size:17px} /* تصغير الخط */
+    .cta{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+    .cta a{padding:12px 24px;border-radius:10px;font-weight:700;transition:transform 0.2s, box-shadow 0.3s;flex:1;min-width:200px;text-align:center;max-width:300px;font-size:16px;} /* تصغير الخط */
+    .cta a:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,112,243,0.4)}
+    .cta .primary{background:var(--accent);color:white}
+    .cta .ghost{border:1px solid var(--navy);color:var(--navy);background:white}
 
     /* حاوية نماذج المتاجر العالمية */
     .global-store-models {
@@ -232,739 +158,233 @@
       margin: 0;
     }
 
-    .headline {
-      max-width: 800px;
-      padding: 32px 0;
-      text-align: center;
-      margin: 0 auto;
-    }
-    .headline h1 {
-      font-size: 38px;
-      margin: 0;
-      color: var(--navy);
-      line-height: 1.2;
-      font-weight: 900;
-    }
-    .headline p {
-      margin-top: 16px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 17px;
-    }
-    .cta {
-      margin-top: 30px;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .cta a {
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: 700;
-      transition: transform 0.2s, box-shadow 0.3s;
-      flex: 1;
-      min-width: 200px;
-      text-align: center;
-      max-width: 300px;
-      font-size: 16px;
-    }
-    .cta a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 112, 243, 0.4);
-    }
-    .cta .primary {
-      background: var(--accent);
-      color: white;
-    }
-    .cta .ghost {
-      border: 1px solid var(--navy);
-      color: var(--navy);
-      background: white;
-    }
-
     /* لماذا بان؟ */
-    .why-us {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 30px 24px;
-      text-align: right;
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    }
-    .why-us h2 {
-      font-size: 32px;
-      color: var(--navy);
-      margin-bottom: 30px;
-      text-align: center;
-      font-weight: 900;
-    }
-    .why-us .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    .stat-item .number {
-      font-size: 38px;
-      font-weight: 900;
-      color: var(--accent);
-      display: block;
-    }
-    .stat-item .label {
-      font-size: 15px;
-      color: var(--muted);
-      margin-top: 5px;
-    }
-    .why-us p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text);
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .why-us{max-width:1200px;margin:50px auto;padding:30px 24px;text-align:right;background:var(--card);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.05)}
+    .why-us h2{font-size:32px;color:var(--navy);margin-bottom:30px;text-align:center;font-weight:900} /* تصغير الخط */
+    .why-us .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px} /* تعديل الشبكة */
+    .stat-item .number{font-size:38px;font-weight:900;color:var(--accent);display:block} /* تصغير الخط */
+    .stat-item .label{font-size:15px;color:var(--muted);margin-top:5px} /* تصغير الخط */
+    .why-us p{font-size:16px;line-height:1.7;color:var(--text);text-align:center;max-width:900px;margin:0 auto} /* تصغير الخط */
 
-    /* كروسيل المتاجر */
-    .carousel-wrap {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .carousel {
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-      height: 400px;
-      transition: transform 0.5s ease-in-out;
-    }
-    .slide {
-      min-width: 100%;
+    /* كروسيل المتاجر - إضافة CSS مفقود للكروسيل */
+    .carousel-wrap { max-width: 1200px; margin: 50px auto; padding: 0 24px; text-align: center; }
+    .carousel { display: flex; overflow: hidden; width: 100%; height: 400px; transition: transform 0.5s ease-in-out; }
+    .slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .controls { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+    .btn { background: var(--accent); color: white; border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; transition: background 0.3s; }
+    .btn:hover { background: var(--navy); }
+    .dotbar { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--muted); cursor: pointer; transition: background 0.3s; }
+    .dot.active { background: var(--accent); }
+
+    /* معرض المتاجر - إضافة CSS مفقود */
+    .stores-header { max-width: 1200px; margin: 50px auto; padding: 0 24px; text-align: center; }
+    .stores-header h2 { font-size: 28px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+    .stores-header p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+    .stores { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+    .store-card { background: var(--card); border-radius: 16px; padding: 20px; gap: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; }
+    .store-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+    .store-card .title { font-size: 17px; text-align: center; margin-bottom: 10px; font-weight: 700; color: var(--navy); }
+    .mockup { flex-direction: column; gap: 15px; }
+    .mockup .shot { width: 100%; border-radius: 12px; overflow: hidden; }
+    .mockup .shot img { height: 200px; object-fit: cover; width: 100%; }
+    .mockup .actions { display: flex; flex-direction: row; justify-content: space-around; width: 100%; gap: 10px; }
+    .icon-link { flex: 1; justify-content: center; padding: 8px 10px; font-size: 14px; background: var(--glass); color: var(--accent); border-radius: 8px; text-align: center; transition: background 0.3s; }
+    .icon-link:hover { background: var(--accent); color: white; }
+    .admin-badge { flex: 1; justify-content: center; padding: 8px 10px; font-size: 14px; background: var(--navy); color: white; border-radius: 8px; text-align: center; }
+    .store-card > div:last-child { font-size: 13px !important; display: flex; justify-content: space-between; gap: 10px; align-items: center; color: var(--muted); }
+
+    /* الميزات المطورة - إضافة CSS مفقود */
+    #features { max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+    .features-header { text-align: center; margin-bottom: 50px; }
+    .features-header h2 { font-size: 32px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+    .features-header p { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 800px; margin: 0 auto; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .feature { background: var(--card); border-radius: 16px; padding: 24px; text-align: right; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s; }
+    .feature:hover { transform: translateY(-5px); }
+    .feature h3 { font-size: 20px; color: var(--navy); margin-bottom: 15px; font-weight: 700; }
+    .feature img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
+    .feature p { font-size: 15px; color: var(--text); line-height: 1.6; }
+
+    /* قسم التسويق - إضافة CSS مفقود */
+    .marketing-focus { max-width: 800px; margin: 50px auto; padding: 40px 24px; background: var(--card); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
+    .marketing-focus h2 { font-size: 28px; color: var(--navy); margin-bottom: 20px; font-weight: 900; }
+    .marketing-focus p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 30px; }
+
+    /* قسم التسعير - إضافة CSS مفقود */
+    .pricing-section { max-width: 1200px; margin: 50px auto; padding: 0 24px; }
+    .pricing-header { text-align: center; margin-bottom: 50px; }
+    .pricing-header h3 { font-size: 28px; color: var(--navy); margin-bottom: 15px; font-weight: 900; }
+    .pricing-header p { font-size: 16px; color: var(--muted); line-height: 1.6; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 30px; }
+    .price-card { background: var(--card); border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s; }
+    .price-card:hover { transform: translateY(-5px); }
+    .price-card h4 { font-size: 20px; color: var(--navy); margin-bottom: 15px; font-weight: 700; }
+    .price { font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 20px; }
+    .price-card ul { list-style: none; padding: 0; margin-bottom: 30px; text-align: right; }
+    .price-card li { font-size: 15px; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+    .price-card .cta { margin-top: 20px; }
+    .price-card .cta a { display: inline-block; padding: 12px 24px; background: var(--accent); color: white; border-radius: 10px; font-weight: 700; transition: transform 0.3s; }
+    .price-card .cta a:hover { transform: translateY(-2px); }
+
+    /* قسم الاتصال - إضافة CSS مفقود */
+    #contact { max-width: 800px; margin: 50px auto; padding: 40px 24px; background: var(--card); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); text-align: center; }
+    #contact h2 { font-size: 28px; color: var(--navy); margin-bottom: 20px; font-weight: 900; }
+    #contact p { font-size: 16px; color: var(--text); line-height: 1.7; margin-bottom: 30px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+    .contact-buttons a { display: block; padding: 15px 20px; margin: 10px 0; background: var(--accent); color: white; border-radius: 10px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+    .contact-buttons a:hover { background: var(--navy); }
+    .what-you-get h4 { font-size: 20px; color: var(--navy); margin-bottom: 15px; text-align: right; }
+    .what-you-get ul { list-style: none; padding: 0; text-align: right; }
+    .what-you-get li { font-size: 15px; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
+    .float-contact { position: fixed; bottom: 20px; right: 20px; left: auto; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+    .float-contact a { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s; }
+    .whatsapp { background: #25D366; }
+    .phone { background: var(--navy); }
+    .float-contact a:hover { transform: scale(1.1); }
+
+    /* الفوتر - إضافة CSS مفقود */
+    footer { background: var(--navy); color: white; padding: 50px 0 20px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+    .footer-section h5 { font-size: 18px; margin-bottom: 15px; font-weight: 700; }
+    .footer-section p { color: #aab7c6; font-size: 14px; line-height: 1.5; }
+    .footer-section ul { list-style: none; padding: 0; }
+    .footer-section li { margin-bottom: 10px; font-size: 14px; }
+    .footer-section a { color: #aab7c6; transition: color 0.3s; }
+    .footer-section a:hover { color: white; }
+    .socials { display: flex; gap: 15px; margin-top: 15px; }
+    .socials a { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; transition: background 0.3s; }
+    .socials a:hover { background: var(--success); }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #aab7c6; color: #aab7c6; font-size: 14px; }
+
+    /* القائمة الجانبية */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px; /* مخفية افتراضيًا */
+      width: 300px;
       height: 100%;
-      flex-shrink: 0;
+      background: var(--card);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+      overflow-y: auto;
     }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .sidebar.active {
+      right: 0;
     }
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
+    .sidebar h3 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 20px;
     }
-    .btn {
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin-bottom: 15px;
+    }
+    .sidebar a {
+      font-size: 16px;
+      color: var(--text);
+      transition: color 0.3s;
+    }
+    .sidebar a:hover {
+      color: var(--accent);
+    }
+    .sidebar-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
       background: var(--accent);
       color: white;
       border: none;
       padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: var(--navy);
-    }
-    .dotbar {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-    }
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--muted);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .dot.active {
-      background: var(--accent);
-    }
-
-    /* معرض المتاجر */
-    .stores-header {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .stores-header h2 {
-      font-size: 28px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 900;
-    }
-    .stores-header p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .stores {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px;
-    }
-    .store-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 20px;
-      gap: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .store-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    }
-    .store-card .title {
-      font-size: 17px;
-      text-align: center;
-      margin-bottom: 10px;
-      font-weight: 700;
-      color: var(--navy);
-    }
-    .mockup {
-      flex-direction: column;
-      gap: 15px;
-    }
-    .mockup .shot {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .mockup .shot img {
-      height: 200px;
-      object-fit: cover;
-      width: 100%;
-    }
-    .mockup .actions {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: 100%;
-      gap: 10px;
-    }
-    .icon-link {
-      flex: 1;
-      justify-content: center;
-      padding: 8px 10px;
-      font-size: 14px;
-      background: var(--glass);
-      color: var(--accent);
       border-radius: 8px;
-      text-align: center;
-      transition: background 0.3s;
-    }
-    .icon-link:hover {
-      background: var(--accent);
-      color: white;
-    }
-    .admin-badge {
-      flex: 1;
-      justify-content: center;
-      padding: 8px 10px;
-      font-size: 14px;
-      background: var(--navy);
-      color: white;
-      border-radius: 8px;
-      text-align: center;
-    }
-    .store-card > div:last-child {
-      font-size: 13px !important;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      color: var(--muted);
-    }
-
-    /* الميزات المطورة */
-    #features {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px;
-    }
-    .features-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    .features-header h2 {
-      font-size: 32px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 900;
-    }
-    .features-header p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .feature {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      text-align: right;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s;
-    }
-    .feature:hover {
-      transform: translateY(-5px);
-    }
-    .feature h3 {
-      font-size: 20px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .feature img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-    .feature p {
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* قسم التسويق */
-    .marketing-focus {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 40px 24px;
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-    .marketing-focus h2 {
-      font-size: 28px;
-      color: var(--navy);
-      margin-bottom: 20px;
-      font-weight: 900;
-    }
-    .marketing-focus p {
-      font-size: 16px;
-      color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-
-    /* قسم التسعير */
-    .pricing-section {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 24px;
-    }
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    .pricing-header h3 {
-      font-size: 28px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 900;
-    }
-    .pricing-header p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-    .price-card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s;
-    }
-    .price-card:hover {
-      transform: translateY(-5px);
-    }
-    .price-card h4 {
-      font-size: 20px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .price {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .price-card ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 30px;
-      text-align: right;
-    }
-    .price-card li {
-      font-size: 15px;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .price-card .cta {
-      margin-top: 20px;
-    }
-    .price-card .cta a {
-      display: inline-block;
-      padding: 12px 24px;
-      background: var(--accent);
-      color: white;
-      border-radius: 10px;
-      font-weight: 700;
-      transition: transform 0.3s;
-    }
-    .price-card .cta a:hover {
-      transform: translateY(-2px);
-    }
-
-    /* قسم الاتصال */
-    #contact {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 40px 24px;
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-    #contact h2 {
-      font-size: 28px;
-      color: var(--navy);
-      margin-bottom: 20px;
-      font-weight: 900;
-    }
-    #contact p {
-      font-size: 16px;
-      color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 30px;
-    }
-    .contact-buttons a {
-      display: block;
-      padding: 15px 20px;
-      margin: 10px 0;
-      background: var(--accent);
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .contact-buttons a:hover {
-      background: var(--navy);
-    }
-    .what-you-get h4 {
-      font-size: 20px;
-      color: var(--navy);
-      margin-bottom: 15px;
-      text-align: right;
-    }
-    .what-you-get ul {
-      list-style: none;
-      padding: 0;
-      text-align: right;
-    }
-    .what-you-get li {
-      font-size: 15px;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-    .float-contact {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      left: auto;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .float-contact a {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s;
-    }
-    .whatsapp {
-      background: #25D366;
-    }
-    .phone {
-      background: var(--navy);
-    }
-    .float-contact a:hover {
-      transform: scale(1.1);
-    }
-
-    /* الفوتر */
-    footer {
-      background: var(--navy);
-      color: white;
-      padding: 50px 0 20px;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-    }
-    .footer-section h5 {
+      cursor: pointer;
       font-size: 18px;
-      margin-bottom: 15px;
-      font-weight: 700;
+      display: none; /* افتراضيًا مرئي على الهواتف فقط، لكن يمكن تعديله */
     }
-    .footer-section p {
-      color: #aab7c6;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-    }
-    .footer-section li {
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-    .footer-section a {
-      color: #aab7c6;
-      transition: color 0.3s;
-    }
-    .footer-section a:hover {
-      color: white;
-    }
-    .socials {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .socials a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      transition: background 0.3s;
-    }
-    .socials a:hover {
-      background: var(--success);
-    }
-    .footer-bottom {
-      text-align: center;
-      padding-top: 30px;
-      border-top: 1px solid #aab7c6;
-      color: #aab7c6;
-      font-size: 14px;
+    @media (max-width: 900px) {
+      .sidebar-toggle {
+        display: block;
+      }
+      nav.topnav {
+        display: none; /* إخفاء القائمة الأفقية على الهواتف */
+      }
     }
 
-    /* Responsive adjustments for all devices */
+    /* Responsive adjustments for all devices - إكمال وتحسين الـ media queries لتجنب الاهتزاز والتكيف مع الهواتف */
     @media (max-width: 900px) {
-      .brand {
-        padding: 10px 16px;
-      }
-      .brand nav.topnav {
-        display: flex;
-        gap: 8px;
-      }
-      .brand nav.topnav a {
-        padding: 6px 10px;
-        font-size: 13px;
-      }
-      .headline h1 {
-        font-size: 30px;
-      }
-      .headline p {
-        font-size: 15px;
-      }
-      .hero-kicker-text {
-        bottom: 30px;
-        right: 15px;
-        left: 15px;
-        font-size: 15px;
-        max-width: calc(100% - 30px);
-        transform: none;
-      }
-      .features {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-      .stores {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      .footer-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-      }
-      .float-contact {
-        right: 20px;
-        left: auto;
-        bottom: 20px;
-      }
-      .global-store-models {
-        flex-direction: column;
-        gap: 15px;
-      }
+      .brand { padding: 10px 16px; }
+      .brand nav.topnav { display: flex; gap: 8px; }
+      .brand nav.topnav a { padding: 6px 10px; font-size: 13px; }
+      .headline h1 { font-size: 30px; }
+      .headline p { font-size: 15px; }
+      .hero-kicker-text { bottom: 30px; right: 15px; left: 15px; font-size: 15px; max-width: calc(100% - 30px); transform: none; }
+      .features { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .stores { grid-template-columns: 1fr; gap: 20px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+      .float-contact { right: 20px; left: auto; bottom: 20px; }
+      .global-store-models { flex-direction: column; gap: 15px; }
+      .sidebar { width: 250px; right: -250px; }
     }
 
     @media (max-width: 600px) {
-      header.hero {
-        height: 50vh;
-        min-height: 300px;
-        padding-top: 70px;
-      }
-      .brand {
-        padding: 8px 12px;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .brand .logo {
-        order: 2;
-      }
-      nav.topnav {
-        order: 1;
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .headline h1 {
-        font-size: 24px;
-      }
-      .headline p {
-        font-size: 14px;
-      }
-      .hero-kicker-text {
-        bottom: 20px;
-        font-size: 14px;
-        right: 10px;
-        left: 10px;
-        text-align: center;
-        max-width: calc(100% - 20px);
-        padding: 12px 20px;
-      }
-      .cta {
-        flex-direction: column;
-        align-items: center;
-      }
-      .cta a {
-        min-width: 100%;
-        max-width: none;
-      }
-      .store-card {
-        padding: 15px;
-      }
-      .mockup .shot img {
-        height: 150px;
-      }
-      .mockup .actions {
-        flex-direction: column;
-      }
-      .why-us .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .carousel {
-        height: 250px;
-      }
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-      .contact-buttons a {
-        padding: 12px 16px;
-        font-size: 14px;
-      }
+      header.hero { height: 70vh; padding-top: 70px; }
+      .brand { padding: 8px 12px; flex-direction: column; gap: 8px; }
+      .brand .logo { order: 2; }
+      nav.topnav { order: 1; width: 100%; justify-content: center; flex-wrap: wrap; }
+      .headline h1 { font-size: 24px; }
+      .headline p { font-size: 14px; }
+      .hero-kicker-text { bottom: 20px; font-size: 14px; right: 10px; left: 10px; text-align: center; max-width: calc(100% - 20px); padding: 12px 20px; }
+      .cta { flex-direction: column; align-items: center; }
+      .cta a { min-width: 100%; max-width: none; }
+      .store-card { padding: 15px; }
+      .mockup .shot img { height: 150px; }
+      .mockup .actions { flex-direction: column; }
+      .why-us .stats { grid-template-columns: repeat(2, 1fr); }
+      .carousel { height: 250px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .contact-buttons a { padding: 12px 16px; font-size: 14px; }
+      .sidebar { width: 100%; right: -100%; }
     }
 
-    /* تحسينات إضافية */
-    img {
-      max-width: 100%;
-      height: auto;
-      loading: lazy;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      font-family: 'Cairo', sans-serif;
-    }
-    section {
-      padding: 20px 0;
-    }
+    /* تحسينات إضافية للـ Next.js style: smooth scrolling وتجنب layout shifts */
+    img { max-width: 100%; height: auto; loading: lazy; }
+    h1, h2, h3, h4, h5 { font-family: 'Cairo', sans-serif; }
+    section { padding: 20px 0; }
   </style>
 </head>
 <body>
   <header class="hero">
-    <div class="hero-content">
-      <div class="hero-kicker-text">
-        <i class="fa fa-tag" style="color: var(--accent); margin-left: 8px;"></i>
+    <div class="hero-kicker-text">
+        <i class="fa fa-tag" style="color:var(--accent); margin-left:8px;"></i>
         **امتلك متجر منتجاتك الخاص اليوم** وابدأ في ضخ أرباحك بطريقة ذكية ومستدامة. نحن هنا لنجعل رحلتك نحو النجاح الرقمي سهلة وممتعة.
-      </div>
-
-      <div class="brand">
-        <div class="logo">
-          <img src="img/logo.png" alt="شعار بان BAAN" loading="lazy">
-          <div class="text">
-            <div class="main">BAAN</div>
-            <div class="sub">Full-Stack E-Commerce</div>
-          </div>
+    </div>
+    
+    <div class="brand">
+      <div class="logo">
+        <img src="img/logo.png" alt="شعار بان BAAN" loading="lazy">
+        <div class="text">
+          <div class="main">BAAN</div>
+          <div class="sub">Full-Stack E-Commerce</div>
         </div>
-        <nav class="topnav">
-          <a href="#about">لماذا نحن؟</a>
-          <a href="#features">تفاصيل التطوير</a>
-          <a href="#stores">المتاجر</a>
-          <a class="btn btn-primary" href="#contact">ابدأ مشروعك</a>
-        </nav>
       </div>
+      <nav class="topnav">
+        <a href="#about">لماذا نحن؟</a>
+        <a href="#features">تفاصيل التطوير</a>
+        <a href="#stores">المتاجر</a>
+        <a class="btn btn-primary" href="#contact">ابدأ مشروعك</a>
+      </nav>
+    </div>
 
+    <div class="hero-content">
       <div class="headline">
         <h1>حلول برمجية متكاملة (Full-Stack) لإنشاء متاجر إلكترونية احترافية ومخصصة</h1>
         <p>نحن الشريك المثالي لتحويل فكرتك التجارية إلى واقع رقمي ناجح. نقدم خدمات تطوير كاملة لمواقع الويب وتطبيقات الهواتف الذكية، مع تركيز خاص على بناء وبيع متاجر إلكترونية متقدمة. كمبرمجين Full-Stack محترفين، نغطي كل التفاصيل من الخلفية التقنية القوية إلى الواجهات العصرية الجذابة، مصممة خصيصًا لقطاع التجارة الإلكترونية الذي نتقنه. معنا، ستحصل على أداة قوية لزيادة مبيعاتك، إدارة مخزونك بكفاءة، وجذب عملاء جدد باستمرار. ابدأ الآن بخطوات بسيطة: تواصل معنا، حدد احتياجاتك، وسنقدم خطة مخصصة مع عرض سعر مجاني في غضون 24 ساعة.</p>
@@ -979,23 +399,23 @@
       <div class="store-model">
         <a href="#" class="baan">
           <div class="icon baan"><i class="fas fa-store"></i></div>
-          <h3>BAAN Full-Stack</h3>
-          <p>حلول متكاملة لمتاجرك الإلكترونية</p>
         </a>
+        <h3>BAAN Full-Stack</h3>
+        <p>حلول متكاملة لمتاجرك الإلكترونية</p>
       </div>
       <div class="store-model">
         <a href="angularspre.html" class="aviacommerce">
           <div class="icon aviacommerce"><i class="fas fa-mobile-alt"></i></div>
-          <h3>Aviacommerce</h3>
-          <p>واجهة متقدمة للتطبيق والإدارة</p>
         </a>
+        <h3>Aviacommerce</h3>
+        <p>واجهة متقدمة للتطبيق والإدارة</p>
       </div>
       <div class="store-model">
         <a href="evershop.html" class="evershop">
           <div class="icon evershop"><i class="fas fa-rocket"></i></div>
-          <h3>EverShop</h3>
-          <p>متجر المستقبل بأداء عالي</p>
         </a>
+        <h3>EverShop</h3>
+        <p>متجر المستقبل بأداء عالي</p>
       </div>
     </div>
   </header>
@@ -1024,182 +444,372 @@
   </section>
 
   <section class="carousel-wrap" id="stores">
-    <div style="text-align: right; max-width: 1100px; margin: 0 auto; padding: 8px 24px;">
-      <strong class="kicker">معرض الواجهات المتقدمة — أمثلة على متاجرنا المبرمجة بالكامل وجاهزة للإطلاق</strong>
-    </div>
+    <div style="text-align:right;max-width:1100px;margin:0 auto;padding:8px 24px;"><strong class="kicker">معرض الواجهات المتقدمة — أمثلة على متاجرنا المبرمجة بالكامل وجاهزة للإطلاق</strong></div>
     <div class="carousel" aria-hidden="false">
       <div class="slide" data-index="0"><img src="https://mutazali12.github.io/3balrahmanmarket/screenshot1.png" alt="متجر 1 - سوبر ماركت" onerror="this.src='https://via.placeholder.com/1000x600?text=Supermarket+Store'" loading="lazy"></div>
       <div class="slide" data-index="1"><img src="https://mutazali12.github.io/jasimmarket/screenshot1.png" alt="متجر 2 - إلكترونيات" onerror="this.src='https://via.placeholder.com/1000x600?text=Electronics+Store'" loading="lazy"></div>
       <div class="slide" data-index="2"><img src="https://mutazali12.github.io/market/screenshot1.png" alt="متجر 3 - أزياء" onerror="this.src='https://via.placeholder.com/1000x600?text=Fashion+Store'" loading="lazy"></div>
-      <div class="slide" data-index="3"><img src="https://img.freepik.com/free-photo/discount-shopping-season-with-sale_23-2150165932.jpg?semt=ais_hybrid&w=740&q=80" alt="متجر 4 - عروض" onerror="this.src='https://via.placeholder.com/1000x600?text=Sale+Store'" loading="lazy"></div>
+      <div class="slide" data-index="3"><img src="https://img.freepik.com/free-photo/discount-shopping-season-with-sale_23-2150165932.jpg?semt=ais_hybrid&w=740&q=80" alt="متجر 4 - منتجات رقمية" onerror="this.src='https://via.placeholder.com/1000x600?text=Digital+Products'" loading="lazy"></div>
+      <div class="slide" data-index="4"><img src="https://assets.mediamodifier.com/mockups/5b053bb8306e03fd32cc5e78/ecommerce-laptop-mockup-with-a-shopping-cart_thumb.jpg" alt="متجر 5 - خدمات وحجوزات" onerror="this.src='https://via.placeholder.com/1000x600?text=Services+and+Booking'" loading="lazy"></div>
+      <div class="slide" data-index="5"><img src="https://img.freepik.com/free-psd/black-friday-mockup-with-laptop_23-2147703701.jpg" alt="متجر 6 - أزياء فاخرة" onerror="this.src='https://via.placeholder.com/1000x600?text=Luxury+Fashion'" loading="lazy"></div>
     </div>
     <div class="controls">
-      <button class="btn" onclick="prevSlide()">❮</button>
-      <button class="btn" onclick="nextSlide()">❯</button>
+      <button class="btn prev" aria-label="السابق"><i class="fa fa-chevron-right"></i></button>
+      <button class="btn next" aria-label="التالي"><i class="fa fa-chevron-left"></i></button>
     </div>
-    <div class="dotbar"></div>
+    <div class="dotbar" id="dots"></div>
+  </section>
+  
+  <div class="stores-header">
+    <h2>معرض المتاجر الستة التي نقوم ببيعها وبرمجتها باحترافية</h2>
+    <p>اكتشف ستة نماذج أساسية قابلة للتخصيص الكامل، مصممة لتناسب مختلف القطاعات التجارية مثل السوبر ماركت، الإلكترونيات، الملابس، المنتجات الرقمية، الخدمات، والتجارة الإلكترونية المتعددة البائعين. كل نموذج جاهز للإطلاق مع دعم فني مستمر.</p>
+  </div>
+  <section class="stores" style="direction:rtl">
+    <div class="store-card">
+      <div class="title"><i class="fa fa-shopping-basket" style="color:var(--accent)"></i> متجر 3balrahmanmarket - سوبر ماركت يومي</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://mutazali12.github.io/3balrahmanmarket/screenshot1.png" alt="عرض متجر 3balrahmanmarket على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+1'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="https://mutazali12.github.io/3balrahmanmarket/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="https://mutazali12.github.io/3balrahmanmarket/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+
+    <div class="store-card">
+      <div class="title"><i class="fa fa-laptop" style="color:var(--accent)"></i> متجر jasimmarket - إلكترونيات وأجهزة</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://mutazali12.github.io/jasimmarket/screenshot1.png" alt="عرض متجر jasimmarket على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+2'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="https://mutazali12.github.io/jasimmarket/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="https://mutazali12.github.io/jasimmarket/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+
+    <div class="store-card">
+      <div class="title"><i class="fa fa-tshirt" style="color:var(--accent)"></i> متجر market - ملابس وأزياء عصرية</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://mutazali12.github.io/market/screenshot1.png" alt="عرض متجر market على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+3'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="https://mutazali12.github.io/market/" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="https://mutazali12.github.io/market/admin.html" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+    
+    <div class="store-card">
+      <div class="title"><i class="fa fa-file-invoice" style="color:var(--accent)"></i> متجر DigitalHub - منتجات رقمية ودورات</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://assets.mediamodifier.com/mockups/5b053bb8306e03fd32cc5e78/ecommerce-laptop-mockup-with-a-shopping-cart_thumb.jpg" alt="عرض متجر DigitalHub على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+4'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+
+    <div class="store-card">
+      <div class="title"><i class="fa fa-handshake" style="color:var(--accent)"></i> متجر ServicePro - حجوزات وخدمات احترافية</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://spng.pngfind.com/pngs/s/146-1462338_mockup-ecommerce-website-on-laptop-hd-png-download.png" alt="عرض متجر ServicePro على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+5'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+
+    <div class="store-card">
+      <div class="title"><i class="fa fa-gem" style="color:var(--accent)"></i> متجر FashionElite - أزياء فاخرة وإكسسوارات</div>
+      <div class="mockup">
+        <div class="shot">
+          <img src="https://img.freepik.com/free-psd/black-friday-mockup-with-laptop_23-2147703701.jpg" alt="عرض متجر FashionElite على لابتوب" onerror="this.src='https://via.placeholder.com/400x200?text=Laptop+Mockup+6'" loading="lazy">
+        </div>
+        <div class="actions">
+          <a class="icon-link" href="#" target="_blank"><i class="fa fa-globe"></i> عرض الواجهة</a>
+          <a class="admin-badge" href="#" target="_blank"><i class="fa fa-user-shield"></i> الإدارة</a>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:14px;color:var(--muted)">
+        <span><i class="fa fa-check-circle" style="color:var(--success)"></i> دومين .com مجاني</span>
+        <span><i class="fa fa-mobile-alt" style="color:var(--success)"></i> تطبيق جوال</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="marketing-focus" id="services">
+    <h2>🚀 دليل النجاح الشامل لمنتجاتنا: خطة تسويقية مجانية مع كل باقة</h2>
+    <p>لا نقتصر على برمجة متجرك فحسب، بل نقدم مع كل باقة متقدمة خطة تسويقية استراتيجية أولية مجانية تمامًا. تشمل هذه الخطة تحليلًا دقيقًا لجمهورك المستهدف، إعدادات محركات البحث (SEO) المتقدمة، واستراتيجيات إطلاق قوية لضمان أول مبيعاتك في أسابيع قليلة. بالإضافة إلى ذلك، نقدم نصائح حول التسويق عبر وسائل التواصل الاجتماعي، الإعلانات المدفوعة، وبناء قائمة بريدية فعالة. استثمر في منتج متكامل يدعم نموك المستدام ويحقق أهدافك التجارية بكفاءة عالية.</p>
+    <div class="cta">
+      <a class="primary" href="#contact"><i class="fa fa-bullhorn"></i> احصل على خطتك التسويقية المخصصة الآن</a>
+    </div>
   </section>
 
   <section id="features">
     <div class="features-header">
-      <h2>الميزات التي تجعل متجرك الإلكتروني متميزًا</h2>
-      <p>نقدم مجموعة شاملة من الخدمات التي تضمن نجاح متجرك مع أدوات متقدمة للإدارة والتسويق.</p>
+      <h2>الميزات المتقدمة التي نقدمها: قدرات المبرمج Full-Stack في متجرك الخاص</h2>
+      <p>كل متجر نطوره يعتمد على أحدث تقنيات Full-Stack، مما يوفر لك أدوات قوية لإدارة أعمالك، زيادة المبيعات، وتحقيق النمو. من التخصيص الكامل إلى التكاملات الآمنة، سنغطي كل احتياجاتك لتبدأ مشروعك بثقة كاملة.</p>
     </div>
+
     <div class="features">
       <div class="feature">
-        <h3>تصميم واجهة عصرية</h3>
-        <img src="https://via.placeholder.com/300x180?text=Modern+UI" alt="واجهة عصرية" loading="lazy">
-        <p>واجهات جذابة ومتجاوبة تناسب جميع الأجهزة لتحسين تجربة العملاء.</p>
+        <h3>تخصيص كامل للواجهات (بناءً على Next.js)</h3>
+        <img src="https://medevel.com/content/images/2024/03/3ed3.png" alt="تخصيص واجهات Next.js" loading="lazy">
+        <p>واجهات مستخدم عصرية ومستجيبة 100%، مستوحاة من Next.js، مع إمكانية تعديل الألوان، التصميمات، والعناصر بما يتناسب مع هويتك التجارية. هذا يضمن تجربة تسوق سلسة على جميع الأجهزة.</p>
       </div>
       <div class="feature">
-        <h3>إدارة المخزون</h3>
-        <img src="https://via.placeholder.com/300x180?text=Inventory" alt="إدارة المخزون" loading="lazy">
-        <p>نظام متقدم لتتبع المخزون وإدارة المنتجات بكفاءة عالية.</p>
+        <h3>تطبيق موبايل أصلي (Native/Hybrid)</h3>
+        <img src="https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/3af34069341ca96d9446a4cc6d33c005638ad676" alt="تطوير تطبيق الموبايل" loading="lazy">
+        <p>تطبيق جوال متكامل جاهز للنشر على Google Play وApp Store، يدعم الإشعارات الفورية والدفع الآمن، للوصول إلى ملايين العملاء المتنقلين بسهولة.</p>
       </div>
       <div class="feature">
-        <h3>دعم فني 24/7</h3>
-        <img src="https://via.placeholder.com/300x180?text=Support" alt="دعم فني" loading="lazy">
-        <p>فريق دعم متاح على مدار الساعة لحل أي مشكلة تواجهك.</p>
+        <h3>برمجة خلفية قوية وآمنة (Back-End)</h3>
+        <img src="https://adamosoft.com/wp-content/uploads/2023/12/back-end-development-map-01.png" alt="برمجة الخلفية المتينة" loading="lazy">
+        <p>بنية تحتية برمجية متقدمة تدعم السرعة العالية، الأمان من الهجمات، وقابلية التوسع لملايين الزوار، مع دعم قواعد بيانات حديثة لإدارة البيانات بكفاءة.</p>
+      </div>
+      <div class="feature">
+        <h3>دومين .com واستضافة آمنة وسريعة</h3>
+        <img src="https://img.freepik.com/free-vector/flat-design-website-hosting-illustration_23-2149253482.jpg" alt="إعداد الدومين والاستضافة" loading="lazy">
+        <p>تسجيل دومين مخصص بصيغة .com، مع استضافة موثوقة وشهادة SSL مجانية لضمان التشفير الكامل، مما يعزز ثقة العملاء ويحسن ترتيبك في محركات البحث.</p>
+      </div>
+      <div class="feature">
+        <h3>لوحة إدارة متقدمة Full-Stack</h3>
+        <img src="https://themefisher.com/blog/niceadmin.webp" alt="لوحة الإدارة المتقدمة" loading="lazy">
+        <p>لوحة تحكم شاملة للإحصاءات، المحاسبة، إدارة المخزون، والطلبات، مع تقارير تحليلية تفاعلية تساعدك في اتخاذ قرارات مدعومة بالبيانات.</p>
+      </div>
+      <div class="feature">
+        <h3>تكامل بوابات الدفع المتعددة</h3>
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/payment-gateway-icon.svg" alt="تكامل بوابات الدفع" loading="lazy">
+        <p>دعم كامل لبوابات الدفع المحلية والدولية مثل مدى، فيزا، ماستركارد، Apple Pay، وPayPal، لتسهيل التحويلات وزيادة معدلات الإكمال بنسبة تصل إلى 40%.</p>
+      </div>
+      <div class="feature">
+        <h3>إدارة مخزون ذكية وآلية</h3>
+        <img src="https://media.istockphoto.com/id/1391824162/photo/smart-augmented-reality-ar-warehouse-management-system.jpg?s=612x612&w=0&k=20&c=VhEA03xUH-WR9hnJTiaDSKNLZMTG8WoT_KaloAVVuX0=" alt="إدارة المخزون الذكية" loading="lazy">
+        <p>نظام تتبع دقيق للمخزون مع تنبيهات تلقائية عند انخفاض الكميات، وربط سهل بأنظمة ERP لتبسيط اللوجستيات وتقليل الخسائر.</p>
+      </div>
+      <div class="feature">
+        <h3>إشعارات فورية وتتبع الطلبات في الوقت الفعلي</h3>
+        <img src="https://www.shutterstock.com/image-vector/mobile-push-notification-template-minimal-260nw-2584886781.jpg" alt="الإشعارات الفورية" loading="lazy">
+        <p>إشعارات دفع فورية للعملاء والإدارة، مع تتبع مباشر لحالة الطلب من الطلب إلى التسليم، مما يحسن رضا العملاء بنسبة كبيرة.</p>
+      </div>
+      <div class="feature">
+        <h3>دعم متاجر متعددة البائعين (Multi-Vendor)</h3>
+        <img src="https://www.softsuave.com/assets/new-formate/multi-vendor/multi-vendor-top-section.webp" alt="منصة متعددة البائعين" loading="lazy">
+        <p>إمكانيات توسع لاستضافة بائعين متعددين داخل متجرك، مع نظام عمولات آلي وإدارة مستقلة، لتحويل متجرك إلى سوق كبيرة مربحة.</p>
       </div>
     </div>
   </section>
-
-  <div class="marketing-focus">
-    <h2>ركز على التسويق، واترك التطوير لنا</h2>
-    <p>نقدم حلولاً متكاملة تتيح لك التركيز على استراتيجيات التسويق بينما نحن نعتني بكل التفاصيل التقنية.</p>
-  </div>
 
   <section class="pricing-section">
     <div class="pricing-header">
-      <h3>خطط التسعير المناسبة لكل احتياجاتك</h3>
-      <p>اختر الخطة التي تناسب حجم عملك وابدأ رحلتك معنا اليوم.</p>
+      <h3>اختر باقتك الاستثمارية المصممة للنجاح السريع</h3>
+      <p>باقاتنا مرنة وقيمة عالية، مصممة لتناسب أحجام الأعمال المختلفة. كل باقة تشمل تدريبًا مجانيًا ودعمًا أوليًا، مع إمكانية التخصيص لتحقيق أقصى عائد. تواصل معنا لعرض سعر مخصص يعكس احتياجاتك الدقيقة.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
-        <h4>خطة أساسية</h4>
-        <div class="price">500 ج.م/شهر</div>
+        <h4>الباقة الأساسية — البداية السريعة</h4>
+        <div class="price">من 400$</div>
         <ul>
-          <li>متجر بسيط</li>
-          <li>دعم أساسي</li>
-          <li>10 منتجات</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> متجر ويب بسيط مع لوحة إدارة أساسية</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> تسجيل دومين .com مجاني لعام</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> استضافة آمنة مع SSL</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> دعم فني أولي لمدة شهر كامل</li>
         </ul>
         <div class="cta">
-          <a href="#contact">اختر الآن</a>
+          <a href="#contact" class="primary">ابدأ الآن</a>
         </div>
       </div>
       <div class="price-card">
-        <h4>خطة احترافية</h4>
-        <div class="price">1000 ج.م/شهر</div>
+        <h4>الباقة المتقدمة — الخيار الأمثل (الأكثر طلبًا)</h4>
+        <div class="price">من 1200$</div>
         <ul>
-          <li>متجر متقدم</li>
-          <li>دعم 24/7</li>
-          <li>50 منتج</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> متجر Full-Stack كامل الميزات مع تخصيص</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> **تطبيق موبايل لـ iOS و Android جاهز للنشر**</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> لوحة إدارة متقدمة مع تقارير إحصائية</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> دعم لمدة 6 أشهر + خطة تسويقية مجانية</li>
         </ul>
         <div class="cta">
-          <a href="#contact">اختر الآن</a>
+          <a href="#contact" class="primary">اختر المتقدمة</a>
         </div>
       </div>
       <div class="price-card">
-        <h4>خطة متميزة</h4>
-        <div class="price">2000 ج.م/شهر</div>
+        <h4>باقة المؤسسات — التخصيص الكامل Full-Stack</h4>
+        <div class="price">اتفاقي حسب المتطلبات الخاصة بك</div>
         <ul>
-          <li>متجر مخصص</li>
-          <li>دعم مميز</li>
-          <li>200 منتج</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> تخصيص كامل للبرمجة الخلفية والأمامية</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> تكامل ERP، API، ودعم متعدد البائعين</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> نظام صلاحيات متقدم ومحاسبة شاملة</li>
+          <li><i class="fa fa-check-circle" style="color:var(--success)"></i> دعم تقني 24/7 مع استشارات استراتيجية مستمرة</li>
         </ul>
         <div class="cta">
-          <a href="#contact">اختر الآن</a>
+          <a href="#contact" class="primary">استشر خبراءنا</a>
         </div>
       </div>
     </div>
+    <p style="text-align:center;color:var(--muted);padding:20px;font-size:15px">هذه الأسعار أولية وتعتمد على مستوى التخصيص والميزات الإضافية. سنقوم بتقييم مشروعك مجانًا وتقديم عرض سعر دقيق في أقرب وقت. لا تفوت فرصة البدء في مشروعك الرقمي اليوم!</p>
   </section>
 
   <section id="contact">
-    <h2>تواصل معنا لتبدأ مشروعك الآن</h2>
-    <p>املأ النموذج أدناه أو اتصل بنا مباشرة للحصول على استشارة مجانية.</p>
+    <h2>هل أنت جاهز لتحويل استثمارك إلى نجاح رقمي مستدام؟</h2>
+    <p>كمتخصصين في البرمجة Full-Stack المتكاملة للتجارة الإلكترونية، نضمن لك بناء متجر عالي الجودة يلبي احتياجات عملك. من الفكرة الأولية إلى الإطلاق والدعم المستمر، سنكون معك خطوة بخطوة. تواصل الآن لبدء تصميم متجرك المخصص، واستلام عرض مجاني يشمل تحليل احتياجاتك وخطة تنفيذ واضحة.</p>
     <div class="contact-grid">
-      <div class="contact-buttons">
-        <a class="whatsapp-btn" href="https://wa.me/201287027277" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp fa-lg"></i> واتساب: +20 1287027277</a>
-        <a class="phone-btn" href="tel:+201122394912"><i class="fa fa-phone fa-lg"></i> اتصل الآن: +20 1122394912</a>
+      <div class="contact-info">
+        <div class="contact-buttons">
+          <a class="whatsapp-btn" href="https://wa.me/201287027277" target="_blank"><i class="fab fa-whatsapp fa-lg"></i> واتساب: +20 1287027277 — للاستفسارات السريعة</a>
+          <a class="phone-btn" href="tel:+201122394912"><i class="fa fa-phone fa-lg"></i> اتصل الآن: +20 1122394912 — للمناقشة المباشرة</a>
+        </div>
       </div>
       <div class="what-you-get">
-        <h4>ما الذي ستحصل عليه؟</h4>
+        <h4>ماذا تحصل عليه بالضبط عند التعاقد مع بان BAAN؟</h4>
         <ul>
-          <li>تحليل احتياجاتك المجاني</li>
-          <li>عرض سعر خلال 24 ساعة</li>
-          <li>دعم مستمر</li>
+          <li><i class="fa fa-angle-left" style="color:var(--accent)"></i> متجر ويب Full-Stack مخصص تمامًا مع لوحة إدارة متقدمة وسهلة الاستخدام</li>
+          <li><i class="fa fa-angle-left" style="color:var(--accent)"></i> دومين .com مخصص (مثال: yourstore.com) مع استضافة سريعة وآمنة لعام كامل</li>
+          <li><i class="fa fa-angle-left" style="color:var(--accent)"></i> تطبيق جوال احترافي جاهز للرفع على Google Play وApp Store</li>
+          <li><i class="fa fa-angle-left" style="color:var(--accent)"></i> دعم فني مستمر، تدريب شامل على الإدارة، وتحديثات مجانية للأشهر الأولى</li>
+          <li><i class="fa fa-angle-left" style="color:var(--accent)"></i> خطة تسويقية أولية مجانية لضمان أول مبيعاتك الناجحة</li>
         </ul>
       </div>
     </div>
   </section>
 
   <div class="float-contact">
-    <a class="whatsapp" href="https://wa.me/201287027277" target="_blank" rel="noopener noreferrer" title="واتساب سريع"><i class="fab fa-whatsapp fa-lg"></i></a>
-    <a class="phone" href="tel:+201122394912" title="اتصال فوري"><i class="fa fa-phone fa-lg"></i></a>
+    <a class="whatsapp" href="https://wa.me/201287027277" target="_blank" title="واتساب سريع"><i class="fab fa-whatsapp fa-lg"></i> واتساب</a>
+    <a class="phone" href="tel:+201122394912" title="اتصال فوري"><i class="fa fa-phone fa-lg"></i> اتصال</a>
   </div>
 
   <footer>
     <div class="footer-inner">
       <div class="footer-section">
-        <h5>حول بان</h5>
-        <p>نقدم حلولاً تقنية متكاملة لتطوير متاجر إلكترونية احترافية.</p>
+        <h5>بان BAAN</h5>
+        <p style="color:#aab7c6;margin-bottom:15px;font-size:14px">حلول برمجية متكاملة لتطوير المواقع والتطبيقات، متخصصون في صناعة وبيع المتاجر الإلكترونية العصرية التي تدفع أعمالك نحو النجاح.</p>
+        <div class="socials">
+          <a href="https://wa.me/201287027277" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+201122394912"><i class="fa fa-phone"></i></a>
+          <a href="https://www.facebook.com/share/1KUHJezdxL/" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://instagram.com/baancompany" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
       <div class="footer-section">
-        <h5>روابط سريعة</h5>
+        <h5>خدماتنا الرئيسية</h5>
         <ul>
-          <li><a href="#about">لماذا نحن؟</a></li>
-          <li><a href="#stores">المتاجر</a></li>
-          <li><a href="#contact">تواصل معنا</a></li>
+          <li><a href="#stores">برمجة وبيع المتاجر الإلكترونية</a></li>
+          <li><a href="#features">التطوير Full-Stack المتقدم</a></li>
+          <li><a href="#pricing">باقات الاستثمار والأسعار</a></li>
+          <li><a href="#contact">الدعم التقني والاستشارات</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h5>روابط مفيدة</h5>
+        <ul>
+          <li><a href="#about">من نحن ولماذا بان؟</a></li>
+          <li><a href="#services">الخطة التسويقية المجانية</a></li>
+          <li><a href="/privacy">سياسة الخصوصية</a></li>
+          <li><a href="/terms">شروط الاستخدام</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h5>تواصل معنا</h5>
-        <div class="socials">
-          <a href="https://www.facebook.com/share/1KUHJezdxL/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-        </div>
+        <ul>
+          <li>واتساب: +20 1287027277</li>
+          <li>هاتف: +20 1122394912</li>
+          <li>بريد إلكتروني: info@baan.co</li>
+          <li>عنوان: القاهرة، مصر</li>
+        </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2025 BAAN. جميع الحقوق محفوظة.
+      &copy; 2025 بان BAAN. جميع الحقوق محفوظة. | مصممة خصيصًا لدعم النجاح الاستثماري والنمو الرقمي المستدام.
     </div>
   </footer>
 
+  <!-- القائمة الجانبية -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div class="sidebar" id="sidebar">
+    <h3>فهرس المحتوى</h3>
+    <ul>
+      <li><a href="#about">لماذا نحن؟</a></li>
+      <li><a href="#stores">المتاجر</a></li>
+      <li><a href="#services">الخدمات</a></li>
+      <li><a href="#features">الميزات</a></li>
+      <li><a href="#pricing">التسعير</a></li>
+      <li><a href="#contact">الاتصال</a></li>
+    </ul>
+  </div>
+
   <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel .slide');
-    const dotbar = document.querySelector('.dotbar');
+    // كروسيل محسن - إضافة pause on hover وتحسين للهواتف
+    (function(){
+      const carousel = document.querySelector('.carousel');
+      const slides = Array.from(document.querySelectorAll('.carousel .slide'));
+      const dotsWrap = document.getElementById('dots');
+      let idx = 0; let timer = null; const pauseMs = 6000;
 
-    function showSlide(index) {
-      if (index >= slides.length) currentSlide = 0;
-      if (index < 0) currentSlide = slides.length - 1;
-      const offset = -currentSlide * 100;
-      document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
-      updateDots();
-    }
+      function buildDots(){
+        slides.forEach((s,i)=>{
+          const d = document.createElement('div'); d.className='dot'+(i===0?' active':''); d.dataset.i=i; dotsWrap.appendChild(d);
+        })
+      }
+      function go(i){
+        idx = (i + slides.length) % slides.length;
+        carousel.style.transform = `translateX(${-idx*100}%)`;
+        document.querySelectorAll('.dot').forEach(d=>d.classList.toggle('active', +d.dataset.i===idx));
+      }
+      function start(){ timer = setInterval(()=>go(idx+1), pauseMs); }
+      function stop(){ clearInterval(timer); timer=null; }
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
+      buildDots(); go(0); start();
+      document.querySelector('.prev').addEventListener('click', ()=>{ stop(); go(idx-1); setTimeout(start, 1000); });
+      document.querySelector('.next').addEventListener('click', ()=>{ stop(); go(idx+1); setTimeout(start, 1000); });
+      dotsWrap.addEventListener('click', (e)=>{ if(e.target.classList.contains('dot')){ stop(); go(+e.target.dataset.i); setTimeout(start, 1000); } });
 
-    function prevSlide() {
-      showSlide(currentSlide - 1);
-    }
-
-    function updateDots() {
-      dotbar.innerHTML = '';
-      slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === currentSlide ? ' active' : '');
-        dot.addEventListener('click', () => showSlide(i));
-        dotbar.appendChild(dot);
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+      
+      // تحسين للهواتف: touch swipe (اختياري، يمكن إضافة مكتبة إذا لزم)
+      let startX = 0;
+      carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+      carousel.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) go(idx + 1);
+        if (endX - startX > 50) go(idx - 1);
       });
-    }
+    })();
 
-    // إعداد الأزرار والنقاط عند التحميل
-    document.querySelector('.controls .btn:first-child').addEventListener('click', prevSlide);
-    document.querySelector('.controls .btn:last-child').addEventListener('click', nextSlide);
-    updateDots();
-    setInterval(nextSlide, 5000); // تغيير الشريحة كل 5 ثوانٍ
+    // دالة لإظهار/إخفاء القائمة الجانبية
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
   </script>
 </body>
 </html>
